@@ -124,7 +124,19 @@ public class IndexController {
     }
 
     @GetMapping("/new")
-    public String New() {
+    public String New(Principal principal, Model model) {
+
+        if (principal != null) {
+            String username = principal.getName();
+            int userId = getUserIDByUsername(username);
+            
+            model.addAttribute("username", username);
+             
+           
+            int cartItemCount = cartService.getCount(userId);
+            model.addAttribute("cartItemCount", cartItemCount);
+
+        }
         return "main/New";
     }
 
