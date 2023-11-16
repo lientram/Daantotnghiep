@@ -141,12 +141,38 @@ public class IndexController {
     }
 
     @GetMapping("/contact")
-    public String contact() {
+    public String contact(Principal principal, Model model) {
+
+          if (principal != null) {
+            String username = principal.getName();
+            int userId = getUserIDByUsername(username);
+            
+            model.addAttribute("username", username);
+             
+           
+            int cartItemCount = cartService.getCount(userId);
+            model.addAttribute("cartItemCount", cartItemCount);
+
+        }
+
         return "main/Contact";
     }
 
     @GetMapping("/about")
-    public String About() {
+    public String About(Principal principal, Model model) {
+
+  if (principal != null) {
+            String username = principal.getName();
+            int userId = getUserIDByUsername(username);
+            
+            model.addAttribute("username", username);
+             
+           
+            int cartItemCount = cartService.getCount(userId);
+            model.addAttribute("cartItemCount", cartItemCount);
+
+        }
+
         return "main/About";
     }
 
