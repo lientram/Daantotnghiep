@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+	crossorigin="anonymous"></script>
+<link rel="stylesheet" href="../css/style.css">
+<script type="module"
+	src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule
+	src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+	<!--     <div class="" th:replace="./layout/header.html"></div> -->
+
+
+	<article class="container mt-5 mb-5">
+		<section class="d-flex flex-column flex-lg-row ">
+			<!--  -->
+			<section class=" w-100 w-lg-50">
+				<!--  -->
+
+
+				<!--  -->
+
+				<!--  -->
+
+				<div th:each="item : ${cartItems}" class="card mx-0 mb-2 w-100">
+					<div class="row g-0 mx-3">
+						<div class="col-md-4">
+							<img th:src="@{'/assets/images/' + ${item.product.image}}"
+								class="img-fluid rounded-start">
+						</div>
+						<div class="col-md-8">
+							<div class="card-body">
+								<h5 th:text="${item.product.name}" class="card-title"></h5>
+								<p th:text="'Giá: ' +${item.product.price} + 'K'"
+									class="card-text"></p>
+
+
+								<p th:text="' Số lượng: ' +${item.quantity}"
+									th:value="${item.quantity}" class="card-text">
+									<small class="text-body-secondary"></small>
+								</p>
+
+
+								<!-- <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p> -->
+							</div>
+							<div class="text-end pb-0 text-danger ">
+								<p
+									th:text="'Tổng: ' + ${item.product.price * item.quantity} + 'K'"></p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--  -->
+
+
+			</section>
+			<!--  -->
+			<section class="border rounded bg-light-subtle w-100 w-lg-50 mx-lg-2">
+				<p class="text-center pt-4 fs-3">Shipping Infomation</p>
+				<div class="p-4">
+					<p>Tình Trạng Đơn Hàng</p>
+					<!--  -->
+					<div class="d-flex justify-content-around mt-3">
+						<div class="d-flex flex-column align-items-center">
+							<ion-icon name="card-outline"></ion-icon>
+							<p class="text-center">Chuẩn Bị</p>
+						</div>
+						<!--  -->
+						<div class="d-flex flex-column align-items-center">
+							<ion-icon name="card-outline"></ion-icon>
+							<p>Chuẩn Bị</p>
+						</div>
+						<!--  -->
+						<div class="d-flex flex-column align-items-center">
+							<ion-icon name="card-outline"></ion-icon>
+							<p>Chuẩn Bị</p>
+						</div>
+						<!--  -->
+						<div class="d-flex flex-column align-items-center">
+							<ion-icon name="card-outline"></ion-icon>
+							<p>Chuẩn Bị</p>
+						</div>
+					</div>
+					<hr>
+					<!--  -->
+					<div class="">
+						<p>Phương Thức Vận Chuyển</p>
+						<p class="fw-light">Grap Food</p>
+					</div>
+					<hr>
+					<!--  -->
+					<div class="">
+						<p>Hình Thức Thanh Toán</p>
+						<p class="fw-light">COD (Thanh toán khi nhận hàng)</p>
+					</div>
+					<hr>
+					<!--  -->
+
+					<div class="d-flex justify-content-between">
+						<p class="mt-3 ">Mã Giảm Giá</p>
+						<select id="selectedVouchers" name="selectedVouchers"
+							class="bg-white border rounded p-2 " style="width: 60%;" required>
+							<option value="">-- Chọn Voucher --</option>
+							<option th:each="voucher : ${user.vouchers}"
+								th:value="${voucher.voucherId}"
+								th:text="${voucher.voucherCode} + ' - ' + 'Giảm' + ${voucher.discountAmount} +'K'"
+								th:selected="${voucher.voucherId == selectedVoucherId}">
+							</option>
+						</select>
+						<button style="width: 20%" class="btn btn-primary"
+							onclick="applyVoucher()">Áp dụng</button>
+					</div>
+
+					<form th:action="@{/pay/checkout}" method="post">
+
+						<div class="border rounded bg-light-subtle">
+							<div class="d-flex justify-content-between p-3 mt-3">
+								<div class="d-flex flex-column">
+									<p>Thông Tin Nhận Hàng</p>
+
+									<div class="row mb-3">
+										<div class="col-8">
+											<label for="fullname" class="form-label">Họ và Tên:</label> <input
+												id="fullname" name="fullname" class="form-control"
+												th:value="${account.fullName}">
+										</div>
+
+										<div class="col-4">
+											<label for="phone" class="form-label">Số Điện Thoại:</label>
+											<input id="phone" name="phone" class="form-control"
+												th:value="'0'+${account.phonenumber}">
+										</div>
+									</div>
+									<input id="phone" name="userId" class="form-control"
+												th:value="${account.userId}">
+
+									<div class="row mb-3">
+										<div class="col-12">
+											<label for="address" class="form-label">Địa Chỉ:</label> <input
+												id="address" name="address" class="form-control"
+												th:value="${account.address}">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+
+
+						<hr>
+						<!--  -->
+						<div class="d-flex flex-column">
+							<p>Ghi Chú Đơn Hàng</p>
+							<input name="description" id="description" class="p-2 rounded"
+								placeholder="Nhập Nội Dung"></input>
+						</div>
+						<hr>
+						<!--  -->
+						<div class="">
+							<p class="fw-normal">Thời Gian Giao Hàng Dự Kiến</p>
+							<p class="fw-light">15-16/10/2023</p>
+						</div>
+						<hr>
+						<!--  -->
+						<div class="d-flex justify-content-between mt-4">
+							<div class="fw-medium">
+								<p>Tổng Tiền</p>
+								<p>Khuyến Mãi</p>
+								<p>Số Thanh Toán</p>
+							</div>
+							<div class="fw-light">
+								<p style="color: red" class="text-end"
+									th:text="${cartAmount} + 'K'"></p>
+								<p style="color: red" class="text-end"
+									th:text="${discountAmount != null} ? ('-' + ${discountAmount} + 'K') : '- 0K'"></p>
+
+								<input type="hidden" name="selectedVouchers"
+									th:value="${voucherId != null} ? ( ${voucherId}) : '0'">
+
+								<!-- 								<p style="color: red" class="text-end" -->
+								<!-- 									th:text="${voucherId != null} ? ('-' + ${voucherId} + 'K') : '- 0K'"></p> -->
+
+								<p style="color: red" class="text-end"
+									th:text="${cartAmount - (discountAmount != null ? discountAmount : 0)} + 'K'"></p>
+							</div>
+						</div>
+						<!--  -->
+						<div class="">
+							<button type="submit" class="w-100 btn btn-warning text-white">Đặt
+								Hàng</button>
+						</div>
+					</form>
+				</div>
+			</section>
+		</section>
+	</article>
+
+
+	<script th:inline="javascript">
+		function applyVoucher() {
+			var selectedVoucherId = document.getElementById('selectedVouchers').value;
+			window.location.href = '/pay?selectedVoucherId='
+					+ selectedVoucherId;
+		}
+	</script>
+
+
+</body>
+</html>

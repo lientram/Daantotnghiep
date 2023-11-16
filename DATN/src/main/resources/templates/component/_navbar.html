@@ -1,0 +1,78 @@
+<div th:fragment="nav">
+    <nav class="navbar navbar-expand-lg navbar-light  d-flex flex-column mb-0 pt-3">
+        <div class="container-fluid container-lg mb-2 mb-lg-0 " style="width: 80%;">
+
+            <div class="col-lg-3">
+                <a class="navbar-brand flex justify-content-center mx-5" href="#"><img src="/assets/images/sgx.png"
+                        width="100px" height="30px" alt=""></a>
+            </div>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <div class="col-lg-6 d-none d-lg-block">
+                <div class="input-group ">
+                    <input type="text" class="form-control" placeholder="Tìm kiếm" aria-label="Recipient's username"
+                        aria-describedby="basic-addon2">
+                    <span class="input-group-text" id="basic-addon2">Search</span>
+                </div>
+            </div>
+            <div class="col-lg-3 col-xl-2 d-none d-lg-block pb-3 mt-3 pt-2  ">
+                <div class="d-flex justify-content-around">
+                    <div class="fw-light text-sm">
+                        <i class="fa-solid fa-phone-volume fa-2xl"></i>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <i class="fa-solid fa-cart-shopping fa-2xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="border-bottom mt-2" style="width: 100%;">
+            <div class="container   d-flex " style="width: 80%;">
+                <div class="border border-2  border-top-0 border-bottom-0 bg-warning pt-3   d-none d-lg-block">
+                    <p class="mx-5">Danh Mục Sản Phẩm</p>
+                </div>
+                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" th:href="@{/home/index}">Trang chủ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/about}">Giới thiệu</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Trang trí nhà cửa
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/new}" aria-disabled="true">Tin tức</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" aria-disabled="true">Dự án</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/contact}" aria-disabled="true">Liên hệ</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>

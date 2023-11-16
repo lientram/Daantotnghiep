@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - account Management</title>
+    <meta charset="UTF-8">
+    <title>Thông tin tài khoản</title>
+</head>
+<body>
+
+<a th:href="@{/}">Home</a>
+<a style="padding-left: 2%" th:href="@{/admin/accounts}">Quản Lý Tài Khoản</a>
+<a style="padding-left: 2%" th:href="@{/admin/products}">Quản Lý Sản Phẩm</a>
+
+
+ <h1>Thêm Tài Khoản</h1>
+
+    <form method="post" th:action="@{/admin/accounts/add}">
+        <label for="username">Tên tài khoản:</label>
+        <input type="text" id="username" name="username" required><br><br>
+
+        <label for="password">Mật khẩu:</label>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="fullName">Họ và tên:</label>
+        <input type="text" id="fullName" name="fullName" required><br><br>
+
+        <label for="address">Địa chỉ:</label>
+        <input type="text" id="address" name="address" required><br><br>
+
+        <label for="role">Vai trò:</label>
+<select id="role" name="role" required>
+    <option value="USER">Khách Hàng</option>
+    <option value="STAFF">Nhân Viên</option>
+    <option value="ADMIN">Quản Lý</option>
+</select><br>
+<br>
+        <button type="submit">Thêm tài khoản</button>
+    </form>
+
+
+
+    <h1>Thông tin tài khoản</h1>
+    
+    <form th:action="@{/admin/accounts/searchUserName}" method="get">
+    <input type="text" name="username" placeholder="Tìm kiếm tên" required> 
+    <button type="submit">Tìm kiếm Tên</button>
+</form>
+
+<form th:action="@{/admin/accounts/searchId}" method="get">
+    <input type="text" name="userId" placeholder="Tìm kiếm ID" required>
+    <button type="submit">Tìm kiếm ID</button>
+</form>
+<form th:action="@{/admin/accounts}" method="get">
+    <button type="submit">Show all</button>
+</form>
+    
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Tên tài khoản</th>
+            <th>Mật khẩu</th>
+            <th>Email</th>
+            <th>Họ và tên</th>
+            <th>Địa chỉ</th>
+            <th>Vai trò</th>
+            <th>Actions</th>
+        </tr>
+        
+        <tr th:each="account : ${accounts}">
+            <td th:text="${account.userId}"></td>
+            <td th:text="${account.username}"></td>
+            <td th:text="${account.password}"></td>
+            <td th:text="${account.email}"></td>
+            <td th:text="${account.fullName}"></td>
+            <td th:text="${account.address}"></td>
+            <td th:text="${account.role}"></td>
+            <td>
+            <a th:href="@{'/admin/accounts/edit/' + ${account.userId}}">Edit</a>
+            <a th:href="@{'/admin/accounts/delete/' + ${account.userId}}">Delete</a>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
