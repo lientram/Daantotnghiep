@@ -26,59 +26,54 @@
           </div>
         </div>
         <!-- Sidebar navigation-->
-        <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
-					<ul id="sidebarnav">
-						<li class="nav-small-cap"><i class="ti ti-dots nav-small-cap-icon fs-4"></i> <span
-								class="hide-menu">Home</span></li>
-						<li class="sidebar-item"><a class="sidebar-link" th:href="@{/}" aria-expanded="false"> <span> <i
-										class="ti ti-layout-dashboard"></i>
-								</span> <span class="hide-menu">Trang chủ</span>
-							</a></li>
-						<li class="nav-small-cap"><i class="ti ti-dots nav-small-cap-icon fs-4"></i> <span
-								class="hide-menu">Quản Lí </span></li>
-						<li class="sidebar-item"><a class="sidebar-link" th:href="@{/admin/products}"
-								aria-expanded="false"> <span>
-									<i class="ti ti-article"></i>
-								</span> <span class="hide-menu">Sản Phẩm</span>
-							</a></li>
-						<li class="sidebar-item"><a class="sidebar-link" th:href="@{/admin/accounts}"
-								aria-expanded="false"> <span>
-									<i class="ti ti-user"></i>
-								</span> <span class="hide-menu">Tài Khoản</span>
-							</a></li>
-						<li class="sidebar-item"><a class="sidebar-link" th:href="@{/admin/revenue-chart}"
-								aria-expanded="false"> <span>
-									<i class="ti ti-cards"></i>
-								</span> <span class="hide-menu">Doanh Thu</span>
-							</a></li>
-						<li class="sidebar-item"><a class="sidebar-link" th:href="@{/admin/feedback}"
-								aria-expanded="false"> <span>
-									<i class="ti ti-file-description"></i>
-								</span> <span class="hide-menu">Feedback</span>
-							</a></li>
-						<li class="sidebar-item"><a class="sidebar-link" th:href="@{/admin/orders}"
-								aria-expanded="false"> <span>
-									<i class="ti ti-shopping-cart"></i>
-								</span> <span class="hide-menu">Đơn Hàng</span>
-							</a></li>
+        <nav class="sidebar-nav scroll-sidebar">
+          <ul id="sidebarnav">
+            <li class="nav-small-cap"><i class="ti ti-dots nav-small-cap-icon fs-4"></i> <span
+                class="hide-menu">Home</span></li>
+            <li class="sidebar-item"><a class="sidebar-link" th:href="@{/}" aria-expanded="false"> <span> <i
+                    class="ti ti-layout-dashboard"></i>
+                </span> <span class="hide-menu">Trang chủ</span>
+              </a></li>
+            <li class="nav-small-cap"><i class="ti ti-dots nav-small-cap-icon fs-4"></i> <span class="hide-menu">Quản Lí
+              </span></li>
+            <li class="sidebar-item"><a class="sidebar-link" th:href="@{/admin/products}" aria-expanded="false"> <span>
+                  <i class="ti ti-article"></i>
+                </span> <span class="hide-menu">Sản Phẩm</span>
+              </a></li>
+            <li class="sidebar-item"><a class="sidebar-link" th:href="@{/admin/accounts}" aria-expanded="false"> <span>
+                  <i class="ti ti-user"></i>
+                </span> <span class="hide-menu">Tài Khoản</span>
+              </a></li>
+            <li class="sidebar-item"><a class="sidebar-link" th:href="@{/admin/revenue-chart}" aria-expanded="false">
+                <span>
+                  <i class="ti ti-cards"></i>
+                </span> <span class="hide-menu">Doanh Thu</span>
+              </a></li>
+            <li class="sidebar-item"><a class="sidebar-link" th:href="@{/admin/feedback}" aria-expanded="false"> <span>
+                  <i class="ti ti-file-description"></i>
+                </span> <span class="hide-menu">Feedback</span>
+              </a></li>
+            <li class="sidebar-item"><a class="sidebar-link" th:href="@{/admin/orders}" aria-expanded="false"> <span>
+                  <i class="ti ti-shopping-cart"></i>
+                </span> <span class="hide-menu">Đơn Hàng</span>
+              </a></li>
 
 
-						<li class="sidebar-item"><a class="sidebar-link" th:href="@{/admin/vouchers}"
-								aria-expanded="false"> <span>
-									<i class="ti ti-ticket"></i>
-								</span> <span class="hide-menu">Mã giảm giá</span>
-							</a></li>
-						<li class="sidebar-item">
-							<a class="sidebar-link" th:href="@{/admin/history}" aria-expanded="false">
-								<span>
-									<i class="ti ti-typography"></i>
-								</span>
-								<span class="hide-menu">Lịch sử nhập hàng</span>
-							</a>
-						</li>
-					</ul>
+            <li class="sidebar-item"><a class="sidebar-link" th:href="@{/admin/vouchers}" aria-expanded="false"> <span>
+                  <i class="ti ti-ticket"></i>
+                </span> <span class="hide-menu">Mã giảm giá</span>
+              </a></li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" th:href="@{/admin/history}" aria-expanded="false">
+                <span>
+                  <i class="ti ti-typography"></i>
+                </span>
+                <span class="hide-menu">Lịch sử nhập hàng</span>
+              </a>
+            </li>
+          </ul>
 
-				</nav>
+        </nav>
         <!-- End Sidebar navigation -->
       </div>
       <!-- End Sidebar scroll-->
@@ -111,7 +106,7 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
                   <div class="message-body">
-                    
+
                     <a href="/security/login.html" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
                   </div>
                 </div>
@@ -133,9 +128,11 @@
                   <input class="form-control me-2" type="text" name="username" placeholder="Tìm kiếm tên " required>
                   <button class="btn btn-outline-primary" type="submit">Search</button>
                 </form>
-                <form style="font-size: larger; " class="d-flex justify-content-end  flex-grow-1  fs-6 " th:action="@{/admin/accounts}" method="get">
-                  <button class="border-0 bg-transparent" type="submit"><ion-icon style="font-size: 2rem; " name="reload-outline"></ion-icon></button>
-              </form>
+                <form style="font-size: larger; " class="d-flex justify-content-end  flex-grow-1  fs-6 "
+                  th:action="@{/admin/accounts}" method="get">
+                  <button class="border-0 bg-transparent" type="submit"><ion-icon style="font-size: 2rem; "
+                      name="reload-outline"></ion-icon></button>
+                </form>
               </h5>
               <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
@@ -186,7 +183,7 @@
                       <th>Tài Khoản</th>
                       <th>Mật Khẩu</th>
                       <th>Email</th>
-                
+
                       <th>Họ Tên</th>
                       <th>Địa Chỉ</th>
                       <th>Vai Trò</th>

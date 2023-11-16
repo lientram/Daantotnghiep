@@ -118,17 +118,22 @@ public class IndexController {
         return "user2/index2";
     }
 
-    @RequestMapping("/login")
+    @GetMapping("/login")
     public String login() {
         return "security2/login2";
     }
 
-    @RequestMapping("/new")
+    @GetMapping("/new")
     public String New() {
         return "main/New";
     }
 
-    @RequestMapping("/about")
+    @GetMapping("/contact")
+    public String contact() {
+        return "main/Contact";
+    }
+
+    @GetMapping("/about")
     public String About() {
         return "main/About";
     }

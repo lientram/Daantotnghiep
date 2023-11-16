@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chi Tiết Sản Phẩm</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -10,19 +12,19 @@
             background-color: #f5f5f5;
             margin: 20px;
         }
-      
-    /* ... các phần CSS khác ... */
 
-    .avatar {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        object-fit: cover;
-    }
+        /* ... các phần CSS khác ... */
 
-    /* ... phần CSS khác ... */
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
 
-        
+        /* ... phần CSS khác ... */
+
+
 
         h1 {
             text-align: center;
@@ -95,52 +97,55 @@
         }
     </style>
 </head>
+
 <body>
     <h1>Chi Tiết Sản Phẩm</h1>
     <div class="product-details">
         <p>Tên Sản Phẩm</p>
         <h2 th:text="${products.name}"></h2>
-        
+
         <p>Mô Tả</p>
         <p th:text="${products.description}"></p>
-        
+
         <p>Giá</p>
         <p th:text="${products.price}"></p>
-        <img th:src="@{'/assets/images/' + ${products.image}}">
-        <p>Còn</p> <p th:text="${products.quantityInStock}"></p> <p>sản phẩm trong kho</p>
+        <img th:src="@{'/assets/images/' + ${products.image}}" alt="">
+        <p>Còn</p>
+        <p th:text="${products.quantityInStock}"></p>
+        <p>sản phẩm trong kho</p>
     </div>
-    
+
     <h2>Customer Feedback</h2>
     <ul class="feedback-list">
-    <li th:each="feedback : ${feedbacks}" class="feedback-item">
-        <div class="d-flex align-items-center">
-            <img class="avatar" th:src="@{'/assets/images/' + ${feedback.customer.photo}}">
-            <div class="ml-2">
-                <p th:text="${feedback.customer.fullName}"></p>
-                <p th:text="${feedback.feedback_date}"></p>
-            </div>
-        </div>
-        <p th:text="${feedback.content}"></p>
-
-        <ul class="reply-list ml-3">
-            <li th:each="reply : ${feedback.replies}" class="reply-item">
-                <div class="d-flex align-items-center">
-                   <img class="avatar" th:src="@{'/assets/images/' + ${reply.customer.photo}}">
-                    <div class="ml-2">
-                        <p th:text="${reply.customer.fullName}"></p>
-                    </div>
+        <li th:each="feedback : ${feedbacks}" class="feedback-item">
+            <div class="d-flex align-items-center">
+                <img class="avatar" th:src="@{'/assets/images/' + ${feedback.customer.photo}}" alt="">
+                <div class="ml-2">
+                    <p th:text="${feedback.customer.fullName}"></p>
+                    <p th:text="${feedback.feedback_date}"></p>
                 </div>
-                <p th:text="${reply.replyText}"></p>
-                <!-- Add other reply details if needed -->
-            </li>
-        </ul>
+            </div>
+            <p th:text="${feedback.content}"></p>
+
+            <ul class="reply-list ml-3">
+                <li th:each="reply : ${feedback.replies}" class="reply-item">
+                    <div class="d-flex align-items-center">
+                        <img class="avatar" th:src="@{'/assets/images/' + ${reply.customer.photo}}" alt="">
+                        <div class="ml-2">
+                            <p th:text="${reply.customer.fullName}"></p>
+                        </div>
+                    </div>
+                    <p th:text="${reply.replyText}"></p>
+                    <!-- Add other reply details if needed -->
+                </li>
+            </ul>
 
             <div class="reply-form">
                 <form th:action="@{'/feedbacks/reply/' + ${products.productId}}" method="post">
                     <input type="hidden" th:name="feedbackId" th:value="${feedback.feedbackId}" />
                     <label for="replyText">Your Reply:</label>
-                    <input type="text" id="replyText" name="replyText"  required/>
-                    <input  type="hidden" id="userId" th:name="userId" th:value="${userId}" />
+                    <input type="text" id="replyText" name="replyText" required />
+                    <input type="hidden" id="userId" th:name="userId" th:value="${userId}" />
                     <input type="submit" value="Post" class="btn btn-primary mt-3" />
                 </form>
             </div>
@@ -149,4 +154,5 @@
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>

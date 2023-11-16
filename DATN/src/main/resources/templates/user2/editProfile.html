@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>Edit Profile</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -51,6 +54,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <a th:href="@{/}" class="btn btn-primary d-block w-25 m-auto mb-3">Home</a>
@@ -60,12 +64,16 @@
     <form th:action="@{/profile/updateProfile}" method="post" enctype="multipart/form-data">
         <input hidden="" name="userId" th:value="${user.userId}" />
         <input type="file" id="photo" name="photo" accept="image/*" class="form-control" />
-        <input type="text" name="phonenumber" th:value="'0' + ${user.phonenumber}" placeholder="Phone" required class="form-control" />
-        <input type="text" name="fullName" th:value="${user.fullName}" placeholder="Full Name" required class="form-control" />
-        <input type="text" name="address" th:value="${user.address}" placeholder="Address" required class="form-control" />
+        <input type="text" name="phonenumber" th:value="'0' + ${user.phonenumber}" placeholder="Phone" required
+            class="form-control" />
+        <input type="text" name="fullName" th:value="${user.fullName}" placeholder="Full Name" required
+            class="form-control" />
+        <input type="text" name="address" th:value="${user.address}" placeholder="Address" required
+            class="form-control" />
         <button type="submit" class="btn btn-primary">Update</button>
     </form>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>

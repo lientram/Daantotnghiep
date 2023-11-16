@@ -59,11 +59,11 @@ public class AdminProductController {
 
 		int pageSize = 6; // Số lượng đơn hàng trên mỗi trang
 		Page<Product> productPage = productService.getAllOrdersPaginated(PageRequest.of(page, pageSize));
-//		List<Product> products = productService.findAll();
+		// List<Product> products = productService.findAll();
 		List<Category> categories = categoryService.findAll();
 		model.addAttribute("products", productPage);
 		model.addAttribute("categories", categories);
-		return "aaa/ui-buttons";
+		return "AdminCpanel/ui-buttons";
 
 	}
 
@@ -197,22 +197,25 @@ public class AdminProductController {
 		return "redirect:/admin/products";
 	}
 
-//	@GetMapping("/searchName")
-//	public String searchProductsNAME(@RequestParam("name") String productName, Model model, @RequestParam(name = "page", defaultValue = "0") int page) {
-//		// Sử dụng phương thức tìm kiếm theo tên từ ProductDAO
-//		
-//		int pageSize = 6;
-//		// Đây là ví dụ tìm kiếm theo tên sản phẩm
-//		List<Product> searchResults = productService.findByName(productName);
-//		Page<Product> productPage = productService.getAllOrdersPaginated(PageRequest.of(page, pageSize));
-//		model.addAttribute("products", productPage);
-//		model.addAttribute("products", searchResults);
-//
-//		return "aaa/ui-buttons"; // Trả về view để hiển thị kết quả tìm kiếm
-//	}
+	// @GetMapping("/searchName")
+	// public String searchProductsNAME(@RequestParam("name") String productName,
+	// Model model, @RequestParam(name = "page", defaultValue = "0") int page) {
+	// // Sử dụng phương thức tìm kiếm theo tên từ ProductDAO
+	//
+	// int pageSize = 6;
+	// // Đây là ví dụ tìm kiếm theo tên sản phẩm
+	// List<Product> searchResults = productService.findByName(productName);
+	// Page<Product> productPage =
+	// productService.getAllOrdersPaginated(PageRequest.of(page, pageSize));
+	// model.addAttribute("products", productPage);
+	// model.addAttribute("products", searchResults);
+	//
+	// return "aaa/ui-buttons"; // Trả về view để hiển thị kết quả tìm kiếm
+	// }
 
 	@GetMapping("/searchId")
-	public String searchProductsID(@RequestParam("productId") Integer productId, Model model, @RequestParam(name = "page", defaultValue = "0") int page,
+	public String searchProductsID(@RequestParam("productId") Integer productId, Model model,
+			@RequestParam(name = "page", defaultValue = "0") int page,
 			Principal principal) {
 		// Sử dụng phương thức tìm kiếm theo Id từ ProductDAO
 		// Đây là ví dụ tìm kiếm theo Id sản phẩm
@@ -220,7 +223,7 @@ public class AdminProductController {
 
 		model.addAttribute("products", searchResults);
 
-		return "aaa/ui-buttons"; // Trả về view để hiển thị kết quả tìm kiếm
+		return "AdminCpanel/ui-buttons"; // Trả về view để hiển thị kết quả tìm kiếm
 	}
 
 	@GetMapping("/searchPrice")
