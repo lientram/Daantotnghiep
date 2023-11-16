@@ -1,0 +1,51 @@
+version: '3'
+services:
+  sql-server:
+    image: mcr.microsoft.com/mssql/server:latest
+    environment:
+      SA_PASSWORD: Sa123456789
+      ACCEPT_EULA: Y
+    ports:
+      - "1433:1433"
+    #networks:
+     # - mynetwork
+    network_mode: "host"
+  your-app:
+    build:
+      context: .
+    network_mode: "host"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - sql-server
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:sqlserver://localhost:1433;database=DATN
+      - SPRING_DATASOURCE_USERNAME=sa
+      - SPRING_DATASOURCE_PASSWORD=Sa123456789  # Mật khẩu cho SQL Server
+
+
+#version: '3'
+#services:
+#  sql-server:
+#    image: mcr.microsoft.com/mssql/server:2022-latest
+#    restart: always
+#    environment:
+#      SA_PASSWORD: Sa123456789
+#      ACCEPT_EULA: Y
+#    ports:
+#      - "1433:1433"
+
+ # spring-app:
+ #   build:
+ #     context: .
+ #   depends_on:
+ #     - sql-server  # Thay vì mysql
+ #   restart: always
+ #   ports:
+ #     - "8080:8080"
+ #   environment:
+ #     - SPRING_DATASOURCE_URL=jdbc:sqlserver://sql-server:1433;databaseName=DATN
+ #     - SPRING_DATASOURCE_USERNAME=sa
+ #     - SPRING_DATASOURCE_PASSWORD=Sa123456789  # Mật khẩu cho SQL Server
+
+

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Shopping Cart</title>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<style>
+
+.alert {
+        padding: 15px;
+        border-radius: 5px;
+        text-align: center;
+    }
+
+</style>
+</head>
+
+
+<body>
+	<!-- Header -->
+	<div class="" th:replace="./main/Header.html"></div>
+	<!-- Header -->
+    <!-- Navigation -->
+    <div class="" th:replace="./main/_navigation.html"></div>
+    <!-- Navigation -->
+
+<div id="notification" th:if="${confirmationMessage != null}" class="alert alert-success">
+    <p th:text="${confirmationMessage}"></p>
+</div>
+
+<div id="notification" th:if="${errorMessage != null}" class="alert alert-danger">
+    <p th:text="${errorMessage}"></p>
+</div>
+  
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<!-- Script để hiển thị và ẩn thông báo -->
+<script>
+    // Hiển thị thông báo khi trang được tải
+    $(document).ready(function() {
+        showNotification();
+    });
+
+    // Hiển thị thông báo và tự động ẩn sau 2 giây
+    function showNotification() {
+        $('#notification').fadeIn().delay(1000).fadeOut();
+    }
+</script>
+
+	<!-- Cart -->
+    <article class="container-fluid container-lg mx-auto mt-5 " style="margin-bottom: 12%;">
+
+        <section class="mx-auto d-flex flex-column align-items-center">
+            <div class="w-100">
+              <div class="d-flex border rounded row ">
+                  <div class="d-flex col-3 align-items-center">
+                     <input type="checkbox">
+                     <p class="mt-3 mx-2">Sản Phẩm</p>
+                  </div>
+                  <!--  -->
+                  <div class="col-9 d-flex justify-content-around mt-3">
+                      <div class="row w-100">
+                        <div class="col-4">
+                          <p>Tên Sản Phẩm</p>
+                        </div>
+                        <div class="col-2">
+                          <p>Giá</p>
+                        </div>
+                        <div class="col-2">
+                          <p>Số Lượng</p>
+                        </div>
+                        <div class="col-2">
+                          <p>Tổng Giá</p>
+                        </div>
+                        <div class="col-2">
+                          <p>Thao Tác</p>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+            </div>
+          <!-- List Sản Phẩm -->
+          <div class="w-100 mt-3 " th:each="item : ${cartItems}">
+            <div class="d-flex border rounded row ">
+                <div class="d-flex col-3 align-items-center">
+                   <input type="checkbox">
+                     
+                   <img class="mx-2 py-2" style="width: 30%;" th:src="@{'/assets/images/' + ${item.product.image}}" alt="Product Image">
+                </div>
+                <!--  -->
+                <div class="col-9 d-flex justify-content-around align-items-center mt-3">
+                    <div class="row w-100  ">
+                      <div class="col-4">
+                        <p th:text="${item.product.name}"></p>
+                      </div>
+                      <div class="col-2 text-danger">
+                        <p th:text="${#numbers.formatDecimal(item.product.price, 0, 'COMMA', 0, 'POINT')} + ' VND'"></p>
+                      </div>
+                      <div class="col-2">
+                        <form th:action="@{/cart/updateItem}" class="" method="post">
+                            <input hidden="" type="text" name="productId"
+                                th:value="${item.product.productId}" /> 
+                                <input type="number" class="w-50 text-center"
+                                name="qty" th:value="${item.quantity}"
+                                onblur="this.form.submit()" min="1"  />
+                        </form>
+                      </div>
+                      <div class="col-2">
+                        <p th:text="${#numbers.formatDecimal(item.product.price * item.quantity, 0, 'COMMA', 0, 'POINT')} + ' VND'"></p>
+                      </div>
+                      <div class="col-2 text-danger">
+                        <form th:action="@{/cart/removeItem}" method="post">
+                            <input type="hidden" name="productId"
+                                th:value="${item.product.productId}" />
+                            <button type="submit" class="border-0 bg-white text-danger">Remove</button>
+                        </form>
+                      </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          
+          
+        </section>
+        <!-- Mua hàng -->
+        
+        <div class="fixed-bottom container d-flex flex-column align-items-center py-2 ">
+                <div class="w-100 bg-white ">
+                  <div class=" border rounded  px-3 ">
+                    <div class="d-flex justify-content-between align-items-center pt-3 border-bottom">
+                      <p class="pt-2">Voucher</p>
+                      <a class=" text-black text-warning-hover link-offset-2 link-offset-3-hover link-underline-warning link-underline-opacity-0 link-underline-opacity-75-hover">Chọn Voucher</a>
+                  </div>
+                  <!--  -->
+                  <div class=" d-flex justify-content-between">
+                      <div class="d-flex align-items-center">
+                          <input class="" type="checkbox">
+                          <p class="mx-3 mt-3">Chọn Tất Cả</p>
+                      </div>
+                      <div class="d-flex align-items-center ">
+                        <p class='mt-3 mx-5'>Tổng Thanh Toán: <span class="text-danger" th:text="${#numbers.formatDecimal(cartAmount, 0, 'COMMA', 0, 'POINT')} + ' VND'"></span></p>
+                        <a class="text-white px-5 bg-warning border-0 rounded py-1 text-decoration-none" th:href="@{/pay}">Mua Hàng</a>
+                      </div>
+                  </div>
+                </div>
+  
+            </div>
+        </div>
+      </article>
+
+
+
+
+
+
+</body>
+</html>

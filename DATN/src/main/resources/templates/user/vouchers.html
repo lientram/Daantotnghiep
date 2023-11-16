@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Vouchers</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .card {
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            margin: 10px;
+            padding: 10px;
+            background-color: #fff;
+            transition: transform 0.3s;
+            width: 250px; /* Fixed width */
+            height: 350px; /* Fixed height */
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+         
+         .alert {
+        padding: 15px;
+        border-radius: 5px;
+        text-align: center;
+    }
+    </style>
+</head>
+<body>
+    <h1>User Vouchers</h1>
+   
+    
+     <div id="notification" th:if="${confirmationMessage != null}" class="alert alert-success">
+    <p th:text="${confirmationMessage}"></p>
+</div>
+
+
+    
+
+    <div class="row">
+        <div th:each="voucher, iterStat : ${vouchers}" class="col-lg-3">
+            <div class="card">
+                <h5 th:text="'Mã: ' + ${voucher.voucherCode}"></h5>
+                <p th:text="${'Giảm: ' + voucher.discountAmount} + 'K'"></p>
+                <p th:text="${'Ngày bắt đầu: ' + voucher.startDate}"></p>
+                <p th:text="${'Ngày kết thúc: ' + voucher.endDate}"></p>
+                <p th:text="${'Số lượng mã: ' + voucher.quantity}"></p>
+                <form th:action="@{vouchers/add-voucher}" method="post">
+                <!-- Input ẩn chứa voucherId để gửi lên controller -->
+                <input type="hidden" name="voucherId" th:value="${voucher.voucherId}" />
+                <input type="hidden" name="password" th:value="${user.password}" />
+                <input type="hidden" name="userId" th:value="${user.userId}" />
+                <button type="button" th:if="${user.hasVoucher(voucher)}">Đã lấy mã</button>
+    			<button type="submit" th:unless="${user.hasVoucher(voucher)}">Lấy mã</button>
+            </form>
+            </div>
+            <!-- Close the row div and start a new row every 4 cards -->
+            <th:block th:if="${iterStat.count % 4 == 0}"></th:block>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+	<script>
+    // Hiển thị thông báo khi trang được tải
+    $(document).ready(function() {
+        showNotification();
+    });
+
+    // Hiển thị thông báo và tự động ẩn sau 2 giây
+    function showNotification() {
+        $('#notification').fadeIn().delay(1500).fadeOut();
+    }
+</script>
+
+</body>
+</html>

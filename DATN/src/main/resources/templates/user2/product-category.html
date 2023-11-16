@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh Sách Sản Phẩm</title>
+</head>
+<body>
+    <h1>Danh Sách Sản Phẩm</h1>
+    
+<!--     <form style="float: left;" th:action="@{/searchName}" method="get"> -->
+<!--     <input type="text" name="name" placeholder="Tìm kiếm tên sản phẩm" required>  -->
+<!--     <button type="submit">Tìm tên sản phẩm</button> -->
+<!-- </form> -->
+<!-- <form  th:action="@{/}" method="get"> -->
+<!--     <button type="submit">Show all</button> -->
+<!-- </form> -->
+<!-- <form th:action="@{/searchPrice}" method="get"> -->
+<!-- Min -->
+<!--     <input id="min" th:name="min" required /> -->
+<!--     <br /> -->
+<!-- Max -->
+<!--     <input id="max" th:name="max" required /> -->
+<!--     <br /> -->
+<!--     <button type="submit">Xem theo giá</button> -->
+<!-- </form> -->
+
+<a th:href="@{/}">Home</a>
+<a style="padding-left: 2%" th:each="allcat : ${allcategory}" th:text="${allcat.name}" th:href="@{'/product/category/' + ${allcat.categoryId}}"></a>
+
+
+    
+    <div class="product-list">
+        <!-- Dùng Thymeleaf để lặp qua danh sách sản phẩm -->
+        <div style="float: left; padding-left: 1%" th:each="product : ${products}" class="product">
+        	
+  
+            <h2 th:text="${product.name}"></h2>
+ 
+            <p th:text="${product.price}"></p>
+            <img style="width: 100px" th:src="@{'/assets/images/' + ${product.image}}">
+            <a th:href="@{'/ProductDetails/' + ${product.productId}}" class="btn-view-details">Xem Chi Tiết</a>
+             <form th:action="@{/cart/addItem}" method="post">
+            <input hidden="" th:value="${product.productId}" name="productId" >
+            <button class="btn-add-to-cart" >Thêm vào Giỏ Hàng</button>
+            </form>
+        </div>
+    </div>
+    
+</body>
+</html>

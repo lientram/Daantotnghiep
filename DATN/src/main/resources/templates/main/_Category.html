@@ -1,0 +1,13 @@
+<article class="mt-5" style="width: 90%; margin: auto; " xmlns:th="http://www.thymeleaf.org" >
+    <p class="text-uppercase text-center fs-3">Danh Mục Sản Phẩm</p>
+    <div class="container text-center ">
+        <div class="row row-gap-3 ">
+            <a th:href="@{'/product/category/' + ${category.categoryId}}" th:each="category : ${categories}" class="col-sm-6 col-lg-3 text-black text-decoration-none  ">
+                <div class=" border rounded categories">
+                    <img class=" my-2 " style="width: 30%;" src="https://noithatkdt.vn/wp-content/uploads/2022/08/Sofa-8.png" alt="">
+                    <p class="text-uppercase fs-5" th:text="${category.name}"></p>
+                </div>
+            </a>
+        </div>
+      </div>
+</article>

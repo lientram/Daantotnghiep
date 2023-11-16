@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Đơn hàng và sản phẩm đã đánh giá</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="text-center mb-4">Đơn hàng và sản phẩm đã đánh giá</h1>
+        <h2>Thông tin đơn hàng</h2>
+        <p>Mã đơn hàng: <span th:text="${order.orderId}"></span></p>
+        <p>Ngày đặt hàng: <span th:text="${order.orderDate}"></span></p>
+        <!-- Thêm thông tin khác về đơn hàng -->
+
+        <h2>Sản phẩm đã đánh giá</h2>
+        <div th:each="product : ${order.reviewedProducts}">
+            <p th:text="${product.name}"></p>
+            <!-- Thêm các chi tiết khác về sản phẩm đã đánh giá -->
+        </div>
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
