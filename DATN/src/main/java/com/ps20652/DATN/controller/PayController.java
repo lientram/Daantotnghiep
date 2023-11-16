@@ -60,7 +60,7 @@ public class PayController {
             int userId = getUserIDByUsername(username);
             
             model.addAttribute("username", username);
-            
+             
            
             int cartItemCount = shoppingCartService.getCount(userId);
             model.addAttribute("cartItemCount", cartItemCount);

@@ -33,6 +33,10 @@ public interface AccountService {
 	public boolean resetPassword(String email, String newPassword);
 	
 	boolean isUserExists(String username);
+
+	boolean existsByUsername(String username);
+
+	boolean existsByEmail(String email);
 	
 	
 

@@ -17,4 +17,6 @@ public interface AccountDAO extends JpaRepository<Account, Integer> {
 	 
 	 boolean existsByUsername(String username);
 	 
+	 boolean existsByEmail(String email);
+	 
 }
