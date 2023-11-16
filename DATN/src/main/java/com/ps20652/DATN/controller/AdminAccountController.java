@@ -56,7 +56,7 @@ public class AdminAccountController {
 	    // Thêm danh sách các tài khoản khác vào model
 	    model.addAttribute("accounts", otherAccounts);
 
-	    return "AdminCpanel/ui-alerts";
+	    return "aaa/ui-alerts";
 	}
 
 	 @PostMapping("/add")
@@ -118,7 +118,7 @@ public class AdminAccountController {
 	        
 	        model.addAttribute("accounts", searchResults);
 	        
-	        return "AdminCpanel/ui-alerts"; // Trả về view để hiển thị kết quả tìm kiếm
+	        return "aaa/ui-alerts"; // Trả về view để hiển thị kết quả tìm kiếm
 	    }
 	 
 	 @GetMapping("/searchId")
@@ -129,6 +129,6 @@ public class AdminAccountController {
 	        
 	        model.addAttribute("accounts", searchResults);
 	        
-	        return "AdminCpanel/ui-alerts"; // Trả về view để hiển thị kết quả tìm kiếm
+	        return "aaa/ui-alerts"; // Trả về view để hiển thị kết quả tìm kiếm
 	    }
 }

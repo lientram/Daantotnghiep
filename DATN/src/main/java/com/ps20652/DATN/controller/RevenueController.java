@@ -93,6 +93,6 @@ public class RevenueController {
         model.addAttribute("monthlyNetRevenues", monthlyNetRevenues);
         model.addAttribute("NetRevenues", netRevenue);
         model.addAttribute("totalPurchaseCost", totalPurchaseCost);
-        return "AdminCpanel/ui-card"; // Trả về template Thymeleaf
+        return "aaa/ui-card"; // Trả về template Thymeleaf
     }
 }

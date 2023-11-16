@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Product</title>
+</head>
+<body>
+    <h1>Edit Product</h1>
+    
+   
+
+    <!-- Biểu mẫu chỉnh sửa sản phẩm -->
+    <form method="post" th:action="@{/admin/products/edit/{productId}(productId=${product.productId})}" th:object="${product}" enctype="multipart/form-data">
+        <input type="hidden" th:field="*{productId}" />
+<!--         <input type="hidden" name="oldImage" th:field="*{image}" th:value="${product.image}" /> -->
+        	
+        
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" th:field="*{name}" />
+        </div>
+        
+        <label for="category">Vai trò:</label>
+        <select id="category" th:field="*{category}" required>
+            <option th:each="cat : ${categories}" 
+            th:value="${cat.categoryId}"
+            th:text="${cat.name}"
+            th:selected="${product.category.categoryId == cat.categoryId}">
+    </option>
+        </select>
+        
+        <div>
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" th:field="*{description}"></textarea>
+        </div>
+        
+        <div>
+            <label for="price">Price:</label>
+            <input type="text" id="price" name="price" th:field="*{price}" />
+        </div>
+        
+        <div>
+            <label for="priceStaff">PriceStaff:</label>
+            <input type="text" id="priceStaff" name="priceStaff" th:field="*{priceStaff}" />
+        </div>
+        
+        <div>
+            <label for="quantity">Quantity:</label>
+            <input type="number" min ="1"  id="quantityInStock" name="quantityInStock" th:field="*{quantityInStock}" />
+        </div>
+        
+        <div>
+    <label for="image">Image:</label>
+    <input type="file" id="image" name="image"  accept="image/*" />
+<!--      <img th:if="${not #strings.isEmpty(product.image)}" th:src="${product.image}" width="100" height="100" /> -->
+<!--          <input type="text"  th:value="${product.image}" /> -->
+</div>
+        
+        <div>
+            <button type="submit">Save</button>
+            <a th:href="@{/admin/products}">Cancel</a>
+        </div>
+    </form>
+</body>
+</html>

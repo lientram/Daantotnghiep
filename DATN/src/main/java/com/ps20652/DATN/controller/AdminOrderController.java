@@ -49,7 +49,7 @@ public class AdminOrderController {
          model.addAttribute("confirmationMessage", confirmationMessage);
      }
 
-     return "AdminCpanel/ui-typography";
+     return "aaa/ui-typography";
  }
 
 
@@ -111,7 +111,7 @@ public class AdminOrderController {
      List<Order> trashOrders = orderService.getOrdersByStatus("Thùng rác"); // Lấy đơn hàng có trạng thái là Thùng rác
 
      model.addAttribute("trashOrders", trashOrders);
-     return "AdminCpanel/ui-typography-trash"; // Trả về template Thymeleaf để hiển thị đơn hàng trong thùng rác
+     return "aaa/ui-typography-trash"; // Trả về template Thymeleaf để hiển thị đơn hàng trong thùng rác
  }
 
  @PostMapping("/admin/orders/restoreFromTrash")

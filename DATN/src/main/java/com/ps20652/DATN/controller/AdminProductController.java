@@ -63,7 +63,7 @@ public class AdminProductController {
 		List<Category> categories = categoryService.findAll();
 		model.addAttribute("products", productPage);
 		model.addAttribute("categories", categories);
-		return "AdminCpanel/ui-buttons";
+		return "aaa/ui-buttons";
 
 	}
 
@@ -197,19 +197,19 @@ public class AdminProductController {
 		return "redirect:/admin/products";
 	}
 
-	@GetMapping("/searchName")
-	public String searchProductsNAME(@RequestParam("name") String productName, Model model, @RequestParam(name = "page", defaultValue = "0") int page) {
-		// Sử dụng phương thức tìm kiếm theo tên từ ProductDAO
-		
-		int pageSize = 6;
-		// Đây là ví dụ tìm kiếm theo tên sản phẩm
-		List<Product> searchResults = productService.findByName(productName);
-		Page<Product> productPage = productService.getAllOrdersPaginated(PageRequest.of(page, pageSize));
-		model.addAttribute("products", productPage);
-		model.addAttribute("products", searchResults);
-
-		return "AdminCpanel/ui-buttons"; // Trả về view để hiển thị kết quả tìm kiếm
-	}
+//	@GetMapping("/searchName")
+//	public String searchProductsNAME(@RequestParam("name") String productName, Model model, @RequestParam(name = "page", defaultValue = "0") int page) {
+//		// Sử dụng phương thức tìm kiếm theo tên từ ProductDAO
+//		
+//		int pageSize = 6;
+//		// Đây là ví dụ tìm kiếm theo tên sản phẩm
+//		List<Product> searchResults = productService.findByName(productName);
+//		Page<Product> productPage = productService.getAllOrdersPaginated(PageRequest.of(page, pageSize));
+//		model.addAttribute("products", productPage);
+//		model.addAttribute("products", searchResults);
+//
+//		return "aaa/ui-buttons"; // Trả về view để hiển thị kết quả tìm kiếm
+//	}
 
 	@GetMapping("/searchId")
 	public String searchProductsID(@RequestParam("productId") Integer productId, Model model, @RequestParam(name = "page", defaultValue = "0") int page,
@@ -220,7 +220,7 @@ public class AdminProductController {
 
 		model.addAttribute("products", searchResults);
 
-		return "AdminCpanel/ui-buttons"; // Trả về view để hiển thị kết quả tìm kiếm
+		return "aaa/ui-buttons"; // Trả về view để hiển thị kết quả tìm kiếm
 	}
 
 	@GetMapping("/searchPrice")
@@ -231,7 +231,7 @@ public class AdminProductController {
 		List<Product> searchResults = productService.findByPrice(min, max);
 		model.addAttribute("products", searchResults);
 
-		return "AdminCpanel/ui-buttons"; // Trả về view để hiển thị kết quả lọc
+		return "aaa/ui-buttons"; // Trả về view để hiển thị kết quả lọc
 	}
 
 	@PostMapping("/addStock")

@@ -57,7 +57,7 @@ public class AdminFeedbackController {
     	
     	model.addAttribute("feedbacks", feedbacks);
         
-        return "AdminCpanel/feedback";
+        return "aaa/feedback";
     }
     
     @PostMapping("/feedback")
