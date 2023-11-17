@@ -39,7 +39,7 @@ import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
             http
                 .authorizeRequests()
 //                    .antMatchers("/", "/feedback/**", "/product/**", "/security/**","/ProductDetails/**").permitAll()
-                    .antMatchers("/cart", "/admin/**").authenticated()
+                    .antMatchers("/cart","/pay", "/admin/**").authenticated()
                     .antMatchers("/admin/**").hasAnyRole("ADMIN", "STAFF")
                     .anyRequest().permitAll()
                 .and()

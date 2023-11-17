@@ -44,4 +44,7 @@ public interface ShoppingCartService {
 	int getCount(Integer userId);
 
 	int getAmount(Integer userId);
+
+	public void clearUserCart(Integer userId);
+
 }

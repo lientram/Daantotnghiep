@@ -21,30 +21,30 @@
     <div class="container mx-auto mt-5 bg-white" style="width: 90%;">
         <div class="row border pt-3 rounded">
             <div class="col-lg-4">
-                <img src="https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lgzc8coe03lee3" class="w-100" alt="">
-                <div class="d-flex justify-content-between" style="">
+                <img th:src="@{'/assets/images/' + ${products.image}}" class="w-100" alt="">
+                <!-- <div class="d-flex justify-content-between" style="">
                     <img style="width: 30%; height:30%; object-fit: cover;" src="https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lgzc8coe03lee3" alt="">
                     <img style="width: 30%; height:30%; object-fit: cover;" src="https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lgzc8coe03lee3" alt="">
                     <img style="width: 30%; height:30%; object-fit: cover;" src="https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lgzc8coe03lee3" alt="">
-                </div>
+                </div> -->
             </div>
             <div class="col-lg-8">
                 <div class="d-flex flex-column">
                     <div class="">
-                        <p class="fs-4 " th:text="${products.name}">Mô hình lắp ráp phụ kiện Gundam EW RG - HG 1/144 Avalanche Exia & Atraea Energy Angel Modified Lady Justice F tặng decal</p>
+                        <p class="fs-4 " th:text="${products.name}"></p>
                     </div>
                     <div class="fw-light fs-6">
                         <p class="text-end">Tố Cáo</p>
                     </div>
                     <div class=" bg-body-secondary d-flex px-3 px-lg-5 rounded w-100 ">
-                        <p class="fs-6 fw-medium text-secondary mt-4"><s>299.000</s></p>
-                        <p class="fs-2 fw-bold mx-3 mt-3 text-danger" th:text="${products.price}">399.000 đ</p>
+                        <!-- <p class="fs-6 fw-medium text-secondary mt-4"><s>299.000</s></p> -->
+                        <p class="fs-2 fw-bold mx-3 mt-3 text-danger" th:text="${products.price} + ' VND'"></p>
                     </div>
                     <div class="d-flex justify-content-between mt-3 align-items-center">
                         <p class="text-secondary mt-3">Số Lượng</p>
                         <div class="d-flex flex-grow-1 justify-content-start mx-5">
                             <button class="border-0 px-3">-</button>
-                            <input class="" style="width:15%;" type="text">
+                            <input value="0" class="" style="width:15%;" type="text">
                             <button class="px-3 border-0">+</button>
                         </div>
                     </div>

@@ -58,37 +58,36 @@
         <div class="form-container">
 
             <h2 class="text-center">Chỉnh sửa sản phẩm</h2>
-            <form method="post" th:action="@{/admin/accounts/edit/{userId}(userId=${account.userId})}"
-                th:object="${account}" >
+            <form method="post" th:action="@{/admin/accounts/edit/{userId}(userId=${account.userId})}">
                 <input type="hidden" th:field="*{userId}" />
                 <div class="mb-3">
-                    <label for="productName" class="form-label">Tên người dùng</label>
-                    <input type="text" class="form-control" id="name" name="name"
-                        th:field="*{username}">
+                    <label for="username" class="form-label">Tên Đăng Nhập</label>
+                    <input type="text" class="form-control" id="name" name="name" th:value="${account.username}">
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Mật khẩu</label>
-                    <input type="text" class="form-control" id="passsword" name="password" h:field="*{password}">
+                    <input type="password" class="form-control" id="password" name="password" th:value="${account.password}">
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email:</label>
-                    <input class="form-control" id="email" row="3" name="email" type="email"
-                        th:field="*{email}"></input>
+                    <input th:value="${account.email}" class="form-control" id="email" row="3" name="email" type="email">
+                       
                 </div>
                 <div class="mb-3">
                     <label for="fullName" class="form-label">Họ và tên</label>
-                    <input type="text" class="form-control" id="fullName" name="fullName" th:field="*{fullName}">
+                    <input type="text" class="form-control" id="fullName" name="fullName" th:value="${account.fullName}">
                 </div>
                 <div class="mb-3">
                     <label for="address" class="form-label">Địa chỉ</label>
-                    <input type="text" class="form-control" id="address" name="address" th:field="*{address}">
+                    <input type="text" class="form-control" id="address" name="address" th:value="${account.address}">
                 </div>
                 <label for="role">Vai trò:</label>
-                <select id="role" th:field="*{role}" required>
+                <select id="role" th:value="${account.role}" name="role" required>
                     <option value="USER" th:selected="${account.role == 'USER'}">Người Dùng</option>
                     <option value="STAFF" th:selected="${account.role == 'STAFF'}">Nhân Viên</option>
                     <option value="ADMIN" th:selected="${account.role == 'ADMIN'}">Quản Lý</option>
                 </select>
+                
                 <button type="submit">Lưu</button>
             </form>
         </div>

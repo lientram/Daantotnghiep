@@ -132,6 +132,16 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
 
 
+		@Override
+		public void clearUserCart(Integer userId) {
+			List<UserCart> userCart = userCartRepository.findByAccountUserId(userId);
+			for (UserCart cartItem : userCart) {
+				userCartRepository.delete(cartItem);
+			}
+		}
+
+
+
 //		@Override
 //		public void clear(Integer userId) {
 //			

@@ -13,4 +13,5 @@ public interface VoucherService {
     
     public void deleteVoucher(Integer voucherId);
     
+    public void deleteExpiredVouchers();
 }

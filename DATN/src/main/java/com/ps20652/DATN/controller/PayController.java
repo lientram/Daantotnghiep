@@ -183,6 +183,9 @@ public class PayController {
 
             // Lưu thông tin doanh thu vào cơ sở dữ liệu
             revenueService.create(revenue);
+
+            shoppingCartService.clearUserCart(userId);
+
             redirectAttributes.addFlashAttribute("confirmationMessage", "Đặt hàng thành công");
             return "redirect:/orders"; // Trả về trang xác nhận đặt hàng hoặc trang thành công
         } catch (Exception e) {
