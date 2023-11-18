@@ -241,7 +241,7 @@ public class IndexController {
         model.addAttribute("categories", cat);
         model.addAttribute("products", products);
         model.addAttribute("allcategory", allcat);
-        return "user2/product-category";
+        return "user2/listProduct";
     }
 
     private int getUserIDByUsername(String username) {
