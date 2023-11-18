@@ -129,10 +129,9 @@ public class IndexController {
         if (principal != null) {
             String username = principal.getName();
             int userId = getUserIDByUsername(username);
-            
+
             model.addAttribute("username", username);
-             
-           
+
             int cartItemCount = cartService.getCount(userId);
             model.addAttribute("cartItemCount", cartItemCount);
 
@@ -143,13 +142,12 @@ public class IndexController {
     @GetMapping("/contact")
     public String contact(Principal principal, Model model) {
 
-          if (principal != null) {
+        if (principal != null) {
             String username = principal.getName();
             int userId = getUserIDByUsername(username);
-            
+
             model.addAttribute("username", username);
-             
-           
+
             int cartItemCount = cartService.getCount(userId);
             model.addAttribute("cartItemCount", cartItemCount);
 
@@ -161,13 +159,12 @@ public class IndexController {
     @GetMapping("/about")
     public String About(Principal principal, Model model) {
 
-  if (principal != null) {
+        if (principal != null) {
             String username = principal.getName();
             int userId = getUserIDByUsername(username);
-            
+
             model.addAttribute("username", username);
-             
-           
+
             int cartItemCount = cartService.getCount(userId);
             model.addAttribute("cartItemCount", cartItemCount);
 
