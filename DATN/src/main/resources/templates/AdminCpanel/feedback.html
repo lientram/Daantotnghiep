@@ -3,10 +3,9 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Feedback Admin</title>
+	<title>Furniture E-Commerce</title>
 	<!-- Thêm các tệp CSS để tạo giao diện cho trang Admin -->
-	<link rel="shortcut icon" type="image/png" href="../assets/images/logos/Logo1.png" />
-	<link rel="stylesheet" href="/assets/css/styles.min.css" />
+
 	<!-- Nếu bạn sử dụng thư viện CSS hoặc framework CSS như Bootstrap -->
 	<!-- <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -17,7 +16,8 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
 	crossorigin="anonymous"></script> -->
-
+	<link rel="shortcut icon" type="image/png" href="../assets/images/logos/Logo1.png" />
+	<link rel="stylesheet" href="/assets/css/styles.min.css" />
 	<style>
 		body {
 			font-family: Arial, sans-serif;
@@ -103,7 +103,7 @@
 			<!-- Sidebar scroll-->
 			<div>
 				<div class="brand-logo d-flex align-items-center justify-content-between">
-					<a href="./index.html" class="text-nowrap logo-img"> <img src="../assets/images/logos/logo2.png"
+					<a th:href="@{/}" class="text-nowrap logo-img"> <img src="../assets/images/logos/logo2.png"
 							width="60" alt="" />
 					</a>
 					<div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
@@ -172,7 +172,7 @@
 		<!--  Main wrapper -->
 		<div class="body-wrapper">
 			<!--  Header Start -->
-			<header class="app-header">
+			<!-- <header class="app-header">
 				<nav class="navbar navbar-expand-lg navbar-light">
 					<ul class="navbar-nav">
 						<li class="nav-item d-block d-xl-none"><a class="nav-link sidebartoggler nav-icon-hover"
@@ -202,114 +202,116 @@
 						</ul>
 					</div>
 				</nav>
-			</header>
+			</header> -->
 			<!-- Phần chính để hiển thị danh sách phản hồi -->
 			<main>
-				<h2>Danh sách phản hồi</h2>
-				<div class="feedback-list">
-					<table class="table table-striped">
-						<thead>
-							<tr>
-								<th>ID</th>
-								<th>Sản phẩm</th>
-								<th>Nội dung</th>
-								<th>Người gửi</th>
-								<th>Ngày gửi</th>
-								<th>Trạng thái</th>
-								<th>Chức năng</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr th:each="feedback : ${feedbacks}">
-								<td th:text="${feedback.feedbackId}"></td>
-								<td th:text="${feedback.product.name}"></td>
-								<td th:text="${feedback.content}"></td>
-								<td th:text="${feedback.customer.fullName}"></td>
-								<td th:text="${feedback.feedback_date}"></td>
-								<td th:text="${feedback.status}"></td>
+				<div class="container">
+					<h1>Danh sách phản hồi</h1>
 
-								<td> <button type="button" class="btn btn-primary reply-button" data-bs-toggle="modal"
-										th:data-bs-target="'#exampleModal-' + ${feedback.feedbackId}"
-										data-bs-whatever="@mdo">Trả lời</button>
+					<div class="feedback-list">
+						<table>
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Sản phẩm</th>
+									<th>Nội dung</th>
+									<th>Người gửi</th>
+									<th>Ngày gửi</th>
+									<th>Trạng thái</th>
+									<th>Chức năng</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="feedback : ${feedbacks}">
+									<td th:text="${feedback.feedbackId}"></td>
+									<td th:text="${feedback.product.name}"></td>
+									<td th:text="${feedback.content}"></td>
+									<td th:text="${feedback.customer.fullName}"></td>
+									<td th:text="${feedback.feedback_date}"></td>
+									<td th:text="${feedback.status}"></td>
+									<td> <button type="button" class="btn btn-primary reply-button"
+											data-bs-toggle="modal"
+											th:data-bs-target="'#exampleModal-' + ${feedback.feedbackId}"
+											data-bs-whatever="@mdo">Trả lời</button>
+										<!-- 						  <button th:if="${feedback.status == 'Đã trả lời'}" type="button" class="btn btn-warning mt-2"></button> -->
+										<div class="modal fade" th:id="'exampleModal-' + ${feedback.feedbackId}"
+											tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h5 class="modal-title" id="exampleModalLabel">Trả lời</h5>
+														<button type="button" class="btn-close" data-bs-dismiss="modal"
+															aria-label="Close"></button>
+													</div>
+													<div class="modal-body">
+														<form th:action="@{/admin/feedback}" method="post">
+															<div class="mb-3">
+																<label for="recipient-name" class="col-form-label">Mã
+																	đơn hàng:</label> <input name="feedbackId"
+																	th:value="${feedback.feedbackId}" type="text"
+																	class="form-control" id="recipient-name" readonly>
+															</div>
+															<div class="mb-3">
+																<label for="message-text" class="col-form-label">Tên
+																	sản phẩm:</label> <input readonly
+																	th:value="${feedback.product.name}" type="text"
+																	class="form-control" id="recipient-name">
+															</div>
 
-									<!-- 						  <button th:if="${feedback.status == 'Đã trả lời'}" type="button" class="btn btn-warning mt-2"></button> -->
-									<div class="modal fade" th:id="'exampleModal-' + ${feedback.feedbackId}"
-										tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-										<div class="modal-dialog">
-											<div class="modal-content">
-												<div class="modal-header">
-													<h5 class="modal-title" id="exampleModalLabel">Trả lời</h5>
-													<button type="button" class="btn-close" data-bs-dismiss="modal"
-														aria-label="Close"></button>
+															<input name="adminId" th:value="${adminId}" type="hidden"
+																class="form-control">
+
+															<div class="mb-3">
+																<label for="message-text" class="col-form-label">Người
+																	gửi: </label> <input readonly
+																	th:value="${feedback.customer.fullName}" type="text"
+																	class="form-control" id="recipient-name">
+															</div>
+															<div class="mb-3">
+																<label for="message-text" class="col-form-label">Nội
+																	dung:</label>
+																<input readonly th:value="${feedback.content}"
+																	class="form-control" id="message-text">
+															</div>
+															<div class="mb-3">
+																<label for="message-text" class="col-form-label">Ngày
+																	gửi:</label> <input readonly
+																	th:value="${feedback.feedback_date}" type="text"
+																	class="form-control" id="recipient-name">
+															</div>
+															<div class="mb-3">
+																<label for="message-text" class="col-form-label">Nội
+																	dung phản hồi:</label>
+																<input name="replyText" class="form-control"
+																	id="message-text">
+															</div>
+															<div class="modal-footer">
+																<button type="button" class="btn btn-secondary"
+																	data-bs-dismiss="modal">Close</button>
+																<button type="submit" class="btn btn-primary">Send
+																	message</button>
+															</div>
+														</form>
+													</div>
+
 												</div>
-												<div class="modal-body">
-													<form th:action="@{/admin/feedback}" method="post">
-														<div class="mb-3">
-															<label for="recipient-name" class="col-form-label">Mã
-																đơn hàng:</label> <input name="feedbackId"
-																th:value="${feedback.feedbackId}" type="text"
-																class="form-control" id="recipient-name" readonly>
-														</div>
-														<div class="mb-3">
-															<label for="message-text" class="col-form-label">Tên
-																sản phẩm:</label> <input readonly
-																th:value="${feedback.product.name}" type="text"
-																class="form-control" id="recipient-name">
-														</div>
-
-														<input name="adminId" th:value="${adminId}" type="hidden"
-															class="form-control">
-
-														<div class="mb-3">
-															<label for="message-text" class="col-form-label">Người gửi:
-															</label> <input readonly
-																th:value="${feedback.customer.fullName}" type="text"
-																class="form-control" id="recipient-name">
-														</div>
-														<div class="mb-3">
-															<label for="message-text" class="col-form-label">Nội
-																dung:</label>
-															<input readonly th:value="${feedback.content}"
-																class="form-control" id="message-text">
-														</div>
-														<div class="mb-3">
-															<label for="message-text" class="col-form-label">Ngày
-																gửi:</label> <input readonly
-																th:value="${feedback.feedback_date}" type="text"
-																class="form-control" id="recipient-name">
-														</div>
-														<div class="mb-3">
-															<label for="message-text" class="col-form-label">Nội
-																dung phản hồi:</label>
-															<input name="replyText" class="form-control"
-																id="message-text">
-														</div>
-														<div class="modal-footer">
-															<button type="button" class="btn btn-secondary"
-																data-bs-dismiss="modal">Close</button>
-															<button type="submit" class="btn btn-primary">Send
-																message</button>
-														</div>
-													</form>
-												</div>
-
 											</div>
 										</div>
-									</div>
-								</td>
-							</tr>
+									</td>
+								</tr>
 
-						</tbody>
-
+							</tbody>
 
 
-					</table>
 
+						</table>
 
 
 
 
 
+
+					</div>
 				</div>
 			</main>
 			<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"

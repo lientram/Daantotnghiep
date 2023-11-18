@@ -57,7 +57,7 @@ public class AdminFeedbackController {
     	
     	model.addAttribute("feedbacks", feedbacks);
         
-        return "aaa/feedback";
+        return "AdminCpanel/feedback";
     }
     
     @PostMapping("/feedback")
@@ -86,7 +86,7 @@ public class AdminFeedbackController {
     	
     	
         
-        return "redirect:/admin/feedback";
+        return "redirect:/AdminCpanel/feedback";
     }
     private int getUserIDByUsername(String username) {
         // Sử dụng Spring Data JPA để truy vấn cơ sở dữ liệu
