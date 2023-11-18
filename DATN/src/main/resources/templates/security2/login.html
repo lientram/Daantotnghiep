@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
@@ -26,7 +24,6 @@
         }
     </style>
 </head>
-
 <body>
     <div class="container bg-light">
         <a th:href="@{/}">Home</a>
@@ -35,11 +32,11 @@
         <form th:action="@{/login}" method="post">
             <div class="form-group">
                 <label for="username">Username:</label>
-                <input type="text" id="username" name="username" class="form-control" required="required" />
+                <input type="text" id="username" name="username" class="form-control" required="required"/>
             </div>
             <div class="form-group">
                 <label for="password">Password:</label>
-                <input type="password" id="password" name="password" class="form-control" required="required" />
+                <input type="password" id="password" name="password" class="form-control" required="required"/>
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-block">Login</button>
@@ -47,8 +44,7 @@
             </div>
         </form>
     </div>
-
+    
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-
 </html>

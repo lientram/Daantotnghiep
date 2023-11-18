@@ -1,34 +1,40 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Vouchers</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.js"
-        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-
+    <style>
+        .card {
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            margin: 10px;
+            padding: 10px;
+            background-color: #fff;
+            transition: transform 0.3s;
+            width: 250px; /* Fixed width */
+            height: 350px; /* Fixed height */
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+         
+         .alert {
+        padding: 15px;
+        border-radius: 5px;
+        text-align: center;
+    }
+    </style>
 </head>
-
 <body>
-
     <h1>User Vouchers</h1>
+   
+    
+     <div id="notification" th:if="${confirmationMessage != null}" class="alert alert-success">
+    <p th:text="${confirmationMessage}"></p>
+</div>
 
 
-    <div id="notification" th:if="${confirmationMessage != null}" class="alert alert-success">
-        <p th:text="${confirmationMessage}"></p>
-    </div>
-
-
-
+    
 
     <div class="row">
         <div th:each="voucher, iterStat : ${vouchers}" class="col-lg-3">
@@ -39,31 +45,30 @@
                 <p th:text="${'Ngày kết thúc: ' + voucher.endDate}"></p>
                 <p th:text="${'Số lượng mã: ' + voucher.quantity}"></p>
                 <form th:action="@{vouchers/add-voucher}" method="post">
-                    <!-- Input ẩn chứa voucherId để gửi lên controller -->
-                    <input type="hidden" name="voucherId" th:value="${voucher.voucherId}" />
-                    <input type="hidden" name="password" th:value="${user.password}" />
-                    <input type="hidden" name="userId" th:value="${user.userId}" />
-                    <button type="button" th:if="${user.hasVoucher(voucher)}">Đã lấy mã</button>
-                    <button type="submit" th:unless="${user.hasVoucher(voucher)}">Lấy mã</button>
-                </form>
+                <!-- Input ẩn chứa voucherId để gửi lên controller -->
+                <input type="hidden" name="voucherId" th:value="${voucher.voucherId}" />
+                <input type="hidden" name="password" th:value="${user.password}" />
+                <input type="hidden" name="userId" th:value="${user.userId}" />
+                <button type="button" th:if="${user.hasVoucher(voucher)}">Đã lấy mã</button>
+    			<button type="submit" th:unless="${user.hasVoucher(voucher)}">Lấy mã</button>
+            </form>
             </div>
             <!-- Close the row div and start a new row every 4 cards -->
             <th:block th:if="${iterStat.count % 4 == 0}"></th:block>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script>
-        // Hiển thị thông báo khi trang được tải
-        $(document).ready(function () {
-            showNotification();
-        });
+	<script>
+    // Hiển thị thông báo khi trang được tải
+    $(document).ready(function() {
+        showNotification();
+    });
 
-        // Hiển thị thông báo và tự động ẩn sau 2 giây
-        function showNotification() {
-            $('#notification').fadeIn().delay(1500).fadeOut();
-        }
-    </script>
+    // Hiển thị thông báo và tự động ẩn sau 2 giây
+    function showNotification() {
+        $('#notification').fadeIn().delay(1500).fadeOut();
+    }
+</script>
 
 </body>
-
 </html>

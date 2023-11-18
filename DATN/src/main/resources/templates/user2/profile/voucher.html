@@ -1,109 +1,100 @@
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-    crossorigin="anonymous"></script>
-  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
-
 <body>
-  <!-- Header -->
-  <div class="" th:replace="./main/Header.html"></div>
-  <!-- Header -->
-  <div class="" th:replace="./main/_navigation.html"></div>
+    <!-- Header -->
+    <div class="" th:replace="./main/Header.html"></div>
+    <!-- Header -->
+    <div class="" th:replace="./main/_navigation.html"></div>
 
-  <div class="d-flex mt-5 mx-auto " style="width: 90%;">
-    <section class="w-100">
-      <div class="container ">
+    <div class="d-flex mt-5 mx-auto " style="width: 90%;">
+        <section class="w-100">
+            <div class="container ">
+            
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="card mb-4">
+                    <div class="card-body text-center">
+                      <img th:src="@{'/assets/images/' + ${user.photo}}" alt="Chưa có hình"
+                        class="rounded-circle img-fluid" style="width: 150px;">
+                      <h5 th:text="${user.fullName}" class="my-3"></h5>
+                     
+                     
+                    </div>
+                  </div>
+                  <div class="card mb-4 mb-lg-0">
+                    <div class="card-body p-0">
+                      <ul class="list-group list-group-flush rounded-3">
+                        <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                          <!-- <i class="fas fa-globe fa-lg text-warning"></i> -->
+                          <a class="mb-0 text-decoration-none text-black"  th:href="@{/profile}">Thông Tin Cơ Bản</a>
+                        </li>
+                        
+                        <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                          <!-- <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i> -->
+                          <a class="mb-0  text-decoration-none text-black" th:href="@{/orders}">Đơn Hàng Đã Đặt</a>
+                        </li>
 
-        <div class="row">
-          <div class="col-lg-4">
-            <div class="card mb-4">
-              <div class="card-body text-center">
-                <img th:src="@{'/assets/images/' + ${user.photo}}" alt="Chưa có hình" class="rounded-circle img-fluid"
-                  style="width: 150px;">
-                <h5 th:text="${user.fullName}" class="my-3"></h5>
-
-
-              </div>
-            </div>
-            <div class="card mb-4 mb-lg-0">
-              <div class="card-body p-0">
-                <ul class="list-group list-group-flush rounded-3">
-                  <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                    <!-- <i class="fas fa-globe fa-lg text-warning"></i> -->
-                    <a class="mb-0 text-decoration-none text-black" th:href="@{/profile}">Thông Tin Cơ Bản</a>
-                  </li>
-
-                  <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                    <!-- <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i> -->
-                    <a class="mb-0  text-decoration-none text-black" th:href="@{/orders}">Đơn Hàng Đã Đặt</a>
-                  </li>
-
-                  <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                    <!-- <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i> -->
-                    <a class="mb-0 text-warning text-decoration-none" th:href="@{/vouchers/voucher-stock}">Kho
-                      Voucher</a>
-                  </li>
-
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-8 mx-auto grid gap-3 ">
-
-            <div th:each="voucher : ${user.vouchers}" class="d-flex border rounded align-items-center px-3 pt-3 my-3">
-              <div class="">
-                <p class="border "> <img src="../assets/images/voucher.jpg" class="w-100  px-3" style="height: 75px;"
-                    alt=""></p>
-              </div>
-              <div class="row mx-lg-2 pb-3 pb-lg-0  mt-3 w-100 ">
-                <div class="col-12 col-lg-6 fw-light d-flex flex-column " style="font-size: smaller;">
-                  <p th:text="${'Mã: ' + voucher.voucherCode}" class="fw-bold fs-5"></p>
-                  <p th:text="${'Giảm: ' + voucher.discountAmount} + ' VND'"></p>
-
+                        <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                            <!-- <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i> -->
+                            <a class="mb-0 text-warning text-decoration-none" th:href="@{/vouchers/voucher-stock}">Kho Voucher</a>
+                        </li>
+                        
+                      </ul>
+                    </div>
+                  </div>
                 </div>
-                <div class=" col-12 col-lg-6 d-flex flex-column mt-2 fw-light text-end  " style="font-size: smaller;">
-                  <p th:text="${'Mã còn: ' + voucher.quantity}" class=" text-end border-0 bg-transparent fs-5"></p>
-                  <p th:text="${'HSD: ' + #dates.format(voucher.startDate, 'dd/MM/yyyy') + ' - ' + #dates.format(voucher.endDate, 'dd/MM/yyyy')}"
-                    class="text-end border-0 bg-transparent"></p>
+                
+                  <div class="col-lg-8 mx-auto grid gap-3">
+                    
+                    <div th:each="voucher : ${user.vouchers}" class="d-flex border rounded align-items-center px-3 pt-3">
+                        <div class="">
+                           <p class="border bg-warning p-5"></p>
+                        </div>
+                        <div class="row mx-lg-2 pb-3 pb-lg-0  mt-3 w-100 ">
+                            <div class="col-12 col-lg-6 fw-light d-flex flex-column " style="font-size: smaller;">
+                                <p th:text="${'Mã: ' + voucher.voucherCode}" class="fw-bold fs-5"></p>
+                                <p th:text="${'Giảm: ' + voucher.discountAmount} + ' VND'"></p>
+                                
+                            </div>
+                            <div class=" col-12 col-lg-6 d-flex flex-column mt-2 fw-light text-end  "  style="font-size: smaller;" >
+       	                         <p th:text="${'Mã còn: ' + voucher.quantity}" class=" text-end border-0 bg-transparent fs-5"></p>
+                                <p th:text="${'HSD: ' + #dates.format(voucher.startDate, 'dd/MM/yyyy') + ' - ' + #dates.format(voucher.endDate, 'dd/MM/yyyy')}" class="text-end border-0 bg-transparent"></p>
 
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                    
+                  </div>
+                  
+                  
                 </div>
               </div>
-
-            </div>
-
-
-          </div>
-
-
-        </div>
-      </div>
-
+              
+              
+            
+        </section>
+ 
+    </div>
+    
+   
 
 
-    </section>
+    
 
-  </div>
-
-
-
-  <div class="" th:replace="./main/Footer.html"></div>
-
-
-
-
-
-
+   
+    
+    
 </body>
-
 </html>
