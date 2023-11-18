@@ -6,67 +6,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.js"
-        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <style>
+        .card {
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            margin: 10px;
+            padding: 10px;
+            background-color: #fff;
+            transition: transform 0.3s;
+            width: 250px;
+            /* Fixed width */
+            height: 350px;
+            /* Fixed height */
+        }
 
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="" th:replace="./main/Header.html"></div>
-    <!-- Header -->
-    <div class="" th:replace="./main/_navigation.html"></div>
-    <div class="container mt-5">
-        <h2 class="my-5">Danh Sách Vouchers</h2>
-        <div id="notification" th:if="${confirmationMessage != null}" class="alert alert-success">
-            <p th:text="${confirmationMessage}"></p>
-        </div>
-        <div class="row">
-            <div th:each="voucher, iterStat : ${vouchers}" class="col-xl-6 col-md-12 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between p-md-1">
-                            <div class="d-flex flex-row">
-                                <div class="align-self-center  ">
-                                    <img src="./assets/images/voucher.jpg" class="w-100  px-3" style="height: 75px;"
-                                        alt="">
-                                </div>
-                                <div class="p-2">
-                                    <h4 th:text="'Mã: ' + ${voucher.voucherCode}"></h4>
+    <h1>User Vouchers</h1>
 
-                                    <p th:text="${'Ngày bắt đầu: ' + voucher.startDate}" class="mb-0"></p>
-                                    <p th:text="${'Ngày kết thúc: ' + voucher.endDate}" class="mb-0"></p>
-                                </div>
-                            </div>
-                            <div class="align-self-center">
-                                <h4 class="h4 mb-2" th:text="${'Giảm: ' + voucher.discountAmount} + 'K'"></h4>
-                                <p th:text="${'Số lượng mã: ' + voucher.quantity}"></p>
-                                <form th:action="@{vouchers/add-voucher}" method="post">
-                                    <!-- Input ẩn chứa voucherId để gửi lên controller -->
-                                    <input type="hidden" name="voucherId" th:value="${voucher.voucherId}" />
-                                    <input type="hidden" name="password" th:value="${user.password}" />
-                                    <input type="hidden" name="userId" th:value="${user.userId}" />
-                                    <button type="button" th:if="${user.hasVoucher(voucher)}">Đã lấy mã</button>
-                                    <button type="submit" th:unless="${user.hasVoucher(voucher)}">Lấy mã</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <th:block th:if="${iterStat.count % 4 == 0}"></th:block>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="" th:replace="./main/Footer.html"></div>
-
-    <!-- <div id="notification" th:if="${confirmationMessage != null}" class="alert alert-success">
+    <div id="notification" th:if="${confirmationMessage != null}" class="alert alert-success">
         <p th:text="${confirmationMessage}"></p>
     </div>
 
@@ -82,7 +52,7 @@
                 <p th:text="${'Ngày kết thúc: ' + voucher.endDate}"></p>
                 <p th:text="${'Số lượng mã: ' + voucher.quantity}"></p>
                 <form th:action="@{vouchers/add-voucher}" method="post">
-                   Input ẩn chứa voucherId để gửi lên controller 
+                    <!-- Input ẩn chứa voucherId để gửi lên controller -->
                     <input type="hidden" name="voucherId" th:value="${voucher.voucherId}" />
                     <input type="hidden" name="password" th:value="${user.password}" />
                     <input type="hidden" name="userId" th:value="${user.userId}" />
@@ -90,10 +60,10 @@
                     <button type="submit" th:unless="${user.hasVoucher(voucher)}">Lấy mã</button>
                 </form>
             </div>
-             Close the row div and start a new row every 4 cards 
+            <!-- Close the row div and start a new row every 4 cards -->
             <th:block th:if="${iterStat.count % 4 == 0}"></th:block>
         </div>
-    </div> -->
+    </div>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
         // Hiển thị thông báo khi trang được tải
