@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Edit Account</title>
+    <style>
+        body {
+            background-image: url("https://i.pinimg.com/564x/77/6c/05/776c051970149ef85fb208abc1b9f3c6.jpg");
+            width: 100%;
+            height: 100vh;
+            object-fit: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            filter: blur(px);
+            box-sizing: border-box;
+
+        }
+
+        /* Thêm CSS tùy chỉnh của bạn ở đây */
+        .form-container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            border-radius: 10px;
+        }
+
+        .form-container h2 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        .form-control {
+            margin-bottom: 15px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="container">
+        <div class="bg-opacity-75 ">
+            <img href="/src/main/resources/static/assets/images/istockphoto-1019217082-612x612.jpg">
+        </div>
+        <div class="form-container">
+
+            <h2 class="text-center">Chỉnh sửa sản phẩm</h2>
+            <form method="post" th:action="@{/admin/accounts/edit/{userId}(userId=${account.userId})}">
+                <input type="hidden" th:field="*{userId}" />
+                <div class="mb-3">
+                    <label for="username" class="form-label">Tên Đăng Nhập</label>
+                    <input type="text" class="form-control" id="name" name="name" th:value="${account.username}">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Mật khẩu</label>
+                    <input type="password" class="form-control" id="password" name="password" th:value="${account.password}">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email:</label>
+                    <input th:value="${account.email}" class="form-control" id="email" row="3" name="email" type="email">
+                       
+                </div>
+                <div class="mb-3">
+                    <label for="fullName" class="form-label">Họ và tên</label>
+                    <input type="text" class="form-control" id="fullName" name="fullName" th:value="${account.fullName}">
+                </div>
+                <div class="mb-3">
+                    <label for="address" class="form-label">Địa chỉ</label>
+                    <input type="text" class="form-control" id="address" name="address" th:value="${account.address}">
+                </div>
+                <label for="role">Vai trò:</label>
+                <select id="role" th:value="${account.role}" name="role" required>
+                    <option value="USER" th:selected="${account.role == 'USER'}">Người Dùng</option>
+                    <option value="STAFF" th:selected="${account.role == 'STAFF'}">Nhân Viên</option>
+                    <option value="ADMIN" th:selected="${account.role == 'ADMIN'}">Quản Lý</option>
+                </select>
+                
+                <button type="submit">Lưu</button>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
