@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Danh sách đơn hàng</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="text-center mb-4">Danh sách đơn hàng</h1>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Mã đơn hàng</th>
+                    <th scope="col">Ngày đặt hàng</th>
+                    <th scope="col">Trạng thái</th>
+                    <th scope="col">Tên người đặt</th>
+                    <th scope="col">Tổng tiền</th>
+                    <th scope="col">Chi tiết</th>
+                    <th scope="col">Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="order : ${orders}">
+                    <td th:text="${order.orderId}"></td>
+                    <td th:text="${order.orderDate}"></td>
+                    <td th:text="${order.status}"></td>
+                    <td th:text="${order.fullName}"></td>
+                    <td th:text="${order.totalPrice}"></td>
+                    <td>
+                        <a th:href="@{'/orderDetails?orderId=' + ${order.orderId}}">Chi tiết</a>
+                    </td>
+                    <td>
+                        <form th:if="${order.status == 'Đang giao hàng'}" th:action="@{'/admin/orders/cancel'}" method="post">
+                            <input type="hidden" th:name="orderId" th:value="${order.orderId}">
+                            <button type="submit" class="btn btn-danger">Hủy xác nhận</button>
+                        </form>
+                        <form th:if="${order.status == 'Đã giao hàng thành công'}" th:action="@{'/admin/orders/viewReview'}" method="post">
+                            <input type="hidden" th:name="orderId" th:value="${order.orderId}">
+                            <input type="hidden" th:name="userId" th:value="${order.user.userId}">
+                            
+                            <button type="submit" class="btn btn-info">Xem đánh giá</button>
+                        </form>
+                        <form th:if="${order.status == 'Đang giao hàng' and order.status != 'Đã giao hàng thành công'}" th:action="@{'/admin/orders/confirm'}" method="post">
+                            <input type="hidden" th:name="orderId" th:value="${order.orderId}">
+                            <button type="submit" class="btn btn-primary">Xác nhận đơn hàng</button>
+                        </form>
+                        <form th:if="${order.status == 'Đơn hàng hủy'}" th:action="@{'/admin/orders/moveToTrash'}" method="post">
+   					 <input type="hidden" th:name="orderId" th:value="${order.orderId}">
+    					<button type="submit" class="btn btn-warning">Chuyển vào thùng rác</button>
+						</form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

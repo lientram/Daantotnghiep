@@ -24,7 +24,7 @@ public class AdminHistoryStock {
 	    // Lấy lịch sử nhập hàng cho sản phẩm
 	    List<StockHistory> stockHistoryList = historyService.findAll();
 	    model.addAttribute("stockHistoryList", stockHistoryList);
-	    return "AdminCpanel/stock-history";
+	    return "admin/stock-history";
 	}
 	
 }

@@ -35,7 +35,7 @@ public class AdminVoucherController {
 		         model.addAttribute("confirmationMessage", confirmationMessage);
 		     }
 		  
-	        return "AdminCpanel/vouchers";
+	        return "admin/vouchers";
 	    }
 
 	  @PostMapping
@@ -55,7 +55,7 @@ public class AdminVoucherController {
 	      
 	      voucherService.createVoucher(voucher);
 	      redirectAttributes.addFlashAttribute("confirmationMessage", "Tạo mã giảm giá thành công");
-	        return "redirect:/AdminCpanel/vouchers";
+	      return "redirect:/admin/vouchers"; // Chuyển hướng sau khi tạo voucher thành công
 	  }
 	  
 	  @PostMapping("/delete")
@@ -64,7 +64,7 @@ public class AdminVoucherController {
 	        voucherService.deleteVoucher(voucherId);
 	        redirectAttributes.addFlashAttribute("confirmationMessage", "Xóa mã giảm giá thành công");
 	        // Redirect về trang danh sách mã giảm với thông báo
-	        return "redirect:/AdminCpanel/vouchers";
+	        return "redirect:/admin/vouchers";
 	    }
 
 }

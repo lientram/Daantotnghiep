@@ -105,12 +105,12 @@ public class AdminProductController {
 
 		// Kiểm tra xem sản phẩm có tồn tại hay không
 		if (product == null) {
-			return "redirect:/AdminCpanel/products";
+			return "redirect:/admin/products";
 		}
 
 		model.addAttribute("product", product);
 		model.addAttribute("categories", categories);
-		return "AdminCpanel/edit-product";
+		return "admin/edit-product";
 	}
 
 	@PostMapping("/edit/{productId}")
@@ -122,7 +122,7 @@ public class AdminProductController {
 			if (existingProduct == null) {
 				// Nếu sản phẩm không tồn tại, bạn có thể thực hiện xử lý phù hợp ở đây, ví dụ:
 				// hiển thị thông báo lỗi
-				return "redirect:/AdminCpanel/products";
+				return "redirect:/admin/products";
 			}
 
 			// Cập nhật thông tin sản phẩm từ editedProduct
@@ -173,7 +173,7 @@ public class AdminProductController {
 			redirectAttributes.addFlashAttribute("errorMessage", "Đã xảy ra lỗi khi cập nhật sản phẩm.");
 		}
 
-		return "redirect:/AdminCpanel/products";
+		return "redirect:/admin/products";
 	}
 
 	@GetMapping("/delete/{productId}")
@@ -194,7 +194,7 @@ public class AdminProductController {
 			redirectAttributes.addFlashAttribute("errorMessage", "Đã xảy ra lỗi khi xóa sản phẩm.");
 		}
 
-		return "redirect:/AdminCpanel/products";
+		return "redirect:/admin/products";
 	}
 
 	// @GetMapping("/searchName")
@@ -226,16 +226,16 @@ public class AdminProductController {
 		return "AdminCpanel/ui-buttons"; // Trả về view để hiển thị kết quả tìm kiếm
 	}
 
-	// @GetMapping("/searchPrice")
-	// public String price(HttpServletRequest request, Model model, @RequestParam("min") double min,
-	// 		@RequestParam("max") double max) {
-	// 	// List<Product> items = dao.findByPriceBetween(min, max);
+	@GetMapping("/searchPrice")
+	public String price(HttpServletRequest request, Model model, @RequestParam("min") double min,
+			@RequestParam("max") double max) {
+		// List<Product> items = dao.findByPriceBetween(min, max);
 
-	// 	List<Product> searchResults = productService.findByPrice(min, max);
-	// 	model.addAttribute("products", searchResults);
+		List<Product> searchResults = productService.findByPrice(min, max);
+		model.addAttribute("products", searchResults);
 
-	// 	return "aaa/ui-buttons"; // Trả về view để hiển thị kết quả lọc
-	// }
+		return "aaa/ui-buttons"; // Trả về view để hiển thị kết quả lọc
+	}
 
 	@PostMapping("/addStock")
 	public String addStock(@RequestParam("productId") Integer productId,
@@ -243,7 +243,7 @@ public class AdminProductController {
 		try {
 			productService.updateQuantityInStock(productId, productDTO.getQuantityAdded());
 			// Redirect to the product list or another appropriate page
-			return "redirect:/AdminCpanel/products";
+			return "redirect:/admin/products";
 		} catch (Exception e) {
 			e.printStackTrace();
 			// Handle the exception, e.g., display an error message
