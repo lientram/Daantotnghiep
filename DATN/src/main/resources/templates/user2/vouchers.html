@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Vouchers</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
@@ -11,32 +14,52 @@
             padding: 10px;
             background-color: #fff;
             transition: transform 0.3s;
-            width: 250px; /* Fixed width */
-            height: 350px; /* Fixed height */
+            width: 250px;
+            /* Fixed width */
+            height: 350px;
+            /* Fixed height */
         }
+
         .card:hover {
             transform: scale(1.05);
         }
-         
-         .alert {
-        padding: 15px;
-        border-radius: 5px;
-        text-align: center;
-    }
+
+        .alert {
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+        }
     </style>
 </head>
+
 <body>
+    <div class="col-lg-6" data-aos="zoom-in" data-aos-delay="100">
+        <div class="member d-flex align-items-start">
+            <div class="pic"><img src="assets/img/team/team-1.jpg" class="img-fluid" alt=""></div>
+            <div class="member-info">
+                <h4>Walter White</h4>
+                <span>Chief Executive Officer</span>
+                <p>Explicabo voluptatem mollitia et repellat qui dolorum quasi</p>
+                <div class="social">
+                    <a href=""><i class="ri-twitter-fill"></i></a>
+                    <a href=""><i class="ri-facebook-fill"></i></a>
+                    <a href=""><i class="ri-instagram-fill"></i></a>
+                    <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
+                </div>
+            </div>
+        </div>
+    </div>
     <h1>User Vouchers</h1>
-   
-    
-     <div id="notification" th:if="${confirmationMessage != null}" class="alert alert-success">
-    <p th:text="${confirmationMessage}"></p>
-</div>
 
 
-    
+    <!-- <div id="notification" th:if="${confirmationMessage != null}" class="alert alert-success">
+        <p th:text="${confirmationMessage}"></p>
+    </div> -->
 
-    <div class="row">
+
+
+
+    <!-- <div class="row">
         <div th:each="voucher, iterStat : ${vouchers}" class="col-lg-3">
             <div class="card">
                 <h5 th:text="'Mã: ' + ${voucher.voucherCode}"></h5>
@@ -44,31 +67,32 @@
                 <p th:text="${'Ngày bắt đầu: ' + voucher.startDate}"></p>
                 <p th:text="${'Ngày kết thúc: ' + voucher.endDate}"></p>
                 <p th:text="${'Số lượng mã: ' + voucher.quantity}"></p>
-                <form th:action="@{vouchers/add-voucher}" method="post">
-                <!-- Input ẩn chứa voucherId để gửi lên controller -->
-                <input type="hidden" name="voucherId" th:value="${voucher.voucherId}" />
-                <input type="hidden" name="password" th:value="${user.password}" />
-                <input type="hidden" name="userId" th:value="${user.userId}" />
-                <button type="button" th:if="${user.hasVoucher(voucher)}">Đã lấy mã</button>
-    			<button type="submit" th:unless="${user.hasVoucher(voucher)}">Lấy mã</button>
-            </form>
-            </div>
-            <!-- Close the row div and start a new row every 4 cards -->
-            <th:block th:if="${iterStat.count % 4 == 0}"></th:block>
+                <form th:action="@{vouchers/add-voucher}" method="post"> -->
+    <!-- Input ẩn chứa voucherId để gửi lên controller -->
+    <!-- <input type="hidden" name="voucherId" th:value="${voucher.voucherId}" />
+                    <input type="hidden" name="password" th:value="${user.password}" />
+                    <input type="hidden" name="userId" th:value="${user.userId}" />
+                    <button type="button" th:if="${user.hasVoucher(voucher)}">Đã lấy mã</button>
+                    <button type="submit" th:unless="${user.hasVoucher(voucher)}">Lấy mã</button>
+                </form>
+            </div> -->
+    <!-- Close the row div and start a new row every 4 cards -->
+    <!-- <th:block th:if="${iterStat.count % 4 == 0}"></th:block>
         </div>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-	<script>
-    // Hiển thị thông báo khi trang được tải
-    $(document).ready(function() {
-        showNotification();
-    });
+    </div> -->
+    <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        // Hiển thị thông báo khi trang được tải
+        $(document).ready(function () {
+            showNotification();
+        });
 
-    // Hiển thị thông báo và tự động ẩn sau 2 giây
-    function showNotification() {
-        $('#notification').fadeIn().delay(1500).fadeOut();
-    }
-</script>
+        // Hiển thị thông báo và tự động ẩn sau 2 giây
+        function showNotification() {
+            $('#notification').fadeIn().delay(1500).fadeOut();
+        }
+    </script> -->
 
 </body>
+
 </html>

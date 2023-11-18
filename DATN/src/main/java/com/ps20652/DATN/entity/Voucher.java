@@ -43,7 +43,7 @@ public class Voucher implements Serializable {
 
     @Column(name = "quantity")
     private Integer quantity;
-    
+
     @OneToMany(mappedBy = "voucher", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Order> orders = new ArrayList<>();
 
