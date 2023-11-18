@@ -234,7 +234,7 @@ public class AdminProductController {
 		List<Product> searchResults = productService.findByPrice(min, max);
 		model.addAttribute("products", searchResults);
 
-		return "aaa/ui-buttons"; // Trả về view để hiển thị kết quả lọc
+		return "AdminCpanel/ui-buttons"; // Trả về view để hiển thị kết quả lọc
 	}
 
 	@PostMapping("/addStock")

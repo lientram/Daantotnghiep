@@ -35,7 +35,7 @@ public class AdminVoucherController {
 		         model.addAttribute("confirmationMessage", confirmationMessage);
 		     }
 		  
-	        return "admin/vouchers";
+	        return "AdminCpanel/vouchers";
 	    }
 
 	  @PostMapping
