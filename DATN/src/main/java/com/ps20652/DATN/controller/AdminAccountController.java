@@ -75,7 +75,7 @@ public class AdminAccountController {
 		}
 		model.addAttribute("account", account);
 
-		return "admin/edit-account";
+		return "AdminCpanel/edit-account";
 	}
 
 	@PostMapping("/edit/{userId}")
