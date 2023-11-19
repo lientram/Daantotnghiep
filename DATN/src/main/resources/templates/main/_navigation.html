@@ -38,13 +38,13 @@
   }
 </style>
 
-<body xmlns:th="http://www.thymeleaf.org">
-  <nav class="navbar navbar-expand-lg border-bottom  bg-white">
-    <div class="container-fluid" style="width: 90%; margin: auto;">
-      <div class="d-none d-lg-block drop border bg-warning rounded ">
-        <div class=" d-lg-flex justify-content-center align-items-center py-2 ">
+
+  <nav class="navbar navbar-expand-lg  bg-white  shadow-sm w-100" xmlns:th="http://www.thymeleaf.org">
+    <div class="d-flex mx-auto col-10 " >
+      <div class="d-none d-lg-block drop border bg-info rounded shadow-lg ">
+        <div class=" d-lg-flex justify-content-center align-items-center py-2 text-black ">
           <ion-icon name="menu-outline"></ion-icon>
-          <button class="dropbtn border-0 bg-warning">Danh Mục Sản Phẩm</button>
+          <button class="dropbtn border-0 bg-info text-black ">Danh Mục Sản Phẩm</button>
         </div>
 
 
@@ -54,7 +54,7 @@
 
         </ul>
       </div>
-      <a class="navbar-brand d-block d-lg-none" href=""></a>
+      <a class=" d-block d-lg-none" href=""></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
         aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -65,34 +65,34 @@
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" th:href="@{/}">Trang chủ</a>
+          <ul class="navbar-nav justify-content-end flex-grow-1 ">
+            <li class="nav-item ">
+              <a class="nav-link active text-black" aria-current="page" th:href="@{/}">Trang chủ</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" th:href="@{/about}">Giới Thiệu</a>
+              <a class="nav-link text-black " th:href="@{/about}">Giới Thiệu</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" th:href="@{/new}">Tin Tức</a>
+              <a class="nav-link text-black" th:href="@{/new}">Tin Tức</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" th:href="@{/contact}">Liên Hệ</a>
+              <a class="nav-link text-black" th:href="@{/contact}">Liên Hệ</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" th:href="@{/vouchers}">Lấy Voucher</a>
+              <a class="nav-link text-black" th:href="@{/vouchers}">Lấy Voucher</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle d-block d-lg-none" href="#" role="button" data-bs-toggle="dropdown"
+              <a class="nav-link dropdown-toggle d-block d-lg-none text-black" href="#" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
                 Sản phẩm
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item text-black" href="#">Action</a></li>
+                <li><a class="dropdown-item text-black" href="#">Another action</a></li>
                 <li>
-                  <hr class="dropdown-divider">
+                  <hr class="dropdown-divider text-black">
                 </li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                <li><a class="dropdown-item text-black" href="#">Something else here</a></li>
               </ul>
             </li>
 
@@ -101,6 +101,5 @@
       </div>
     </div>
   </nav>
-</body>
 
-</html>
+

@@ -1,52 +1,55 @@
 <!-- Header -->
 <Header xmlns:th="http://www.thymeleaf.org">
-  <nav class="navbar navbar-expand-lg navbar-light bg-white  d-flex flex-column mb-0">
-      <div class="  mb-2 mb-lg-0 d-flex  align-items-center" style="width: 90%;">
+  <nav class="navbar navbar-expand-lg navbar-light shadow-lg  d-flex flex-column mb-0 py-1 bg-info" >
+      <div class=" col-10  mb-1 mb-lg-0 d-flex  align-items-center" >
          
-        <div class="">
-         <a th:href="@{/}"> <img style="width: 10%; scale: 2;" src="https://img.upanh.tv/2023/11/18/Artboard-3.png" alt="Artboard-3.png">
-         </a>  </div>
+        <div class="col-3">
+          <a class="d-none d-lg-block" th:href="@{/}"> <img class="border rounded-circle mx-2 " style="width: 20%; " src="https://img.upanh.tv/2023/11/18/Artboard-3.png" alt="Artboard-3.png"></a>  
+          <a class="d-block d-md-none" th:href="@{/}"> <img class="border rounded-square mx-2 " style="width: 60%; " src="https://img.upanh.tv/2023/11/18/Artboard-3.png" alt="Artboard-3.png"></a>  
+          <a class="d-none d-md-block d-lg-none" th:href="@{/}"> <img class="border rounded-square mx-2 " style="width: 40%; " src="https://img.upanh.tv/2023/11/18/Artboard-3.png" alt="Artboard-3.png"></a>  
+
+        </div>
             
            
               
-            <div class="d-flex align-items-center w-100 justify-content-end grid column-gap-3">
+            <div class="d-flex align-items-center w-100 justify-content-end justify-lg-content-between grid column-gap-3">
               <!-- Search -->
-               <form th:action="@{/searchName}" method="get" class="col-lg-6 ">
-                  <div class="d-block d-lg-none mt-3 fs-3">
+               <form th:action="@{/searchName}" method="get" class="col-lg-7 ">
+                  <div class="d-block d-lg-none mt-2 mt-md-3 fs-6">
                     <ion-icon name="search-outline"></ion-icon>
                   </div>
                   
-                  <div class="input-group d-none d-lg-flex  ">
-                      <input type="text" name="name" class="form-control" placeholder="Tìm kiếm" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                      <button type="submit" class="input-group-text" id="basic-addon2">Search</button>
+                  <div class="border rounded d-none d-lg-flex align-items-center w-100 py-0 bg-white px-2">
+                      <input type="text" name="name" class="w-100 rounded-0 border border-0 " style="outline: none;" placeholder="Tìm kiếm" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                      <button type="submit" class="border border-0 bg-white fs-4" id="basic-addon2"><ion-icon class="mt-2" name="search-outline"></ion-icon></button>
                   </div>
                 </form>
               <!-- Search -->
-                <div class="d-flex " style="z-index: 50;">
-                  <div class="d-flex justify-content-around grid column-gap-3">
+                <div class="d-flex col-lg-5 justify-content-end " >
+                  <div class="d-flex justify-content-around grid column-gap-3" style="z-index: 999;">
                     <!-- Login/Logout -->
-                    <div class="btn-group mt-2">
+                    <div class="btn-group mt-1 " style="font-size: smaller;">
                       <button class="btn p-0 dropdown-toggle d-flex  align-items-center justify-content-between border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <ion-icon th:unless="${username}" class="fs-3 mt-2" name="person-outline"></ion-icon>
+                        <ion-icon th:unless="${username}" class="fs-5 mt-1" name="person-outline"></ion-icon>
                         <p th:if="${username}" th:text="${username}" class="fs-5 pt-3"></p>
                       </button>
                         
-                      <ul class="dropdown-menu" >
-                        <div class="" th:unless="${username}">
-                          <li><a class="dropdown-item " th:href="@{/register}" >Đăng Ký­</a></li>
-                          <li><a class="dropdown-item "th:href="@{/login}" >Đăng nhập</a></li>
+                      <ul class="dropdown-menu"  style="z-index: 999;">
+                        <div class="" th:unless="${username}" style="z-index: 99;">
+                          <li><a class="dropdown-item " style="font-size: smaller;" th:href="@{/register}" >Đăng Ký­</a></li>
+                          <li><a class="dropdown-item " style="font-size: smaller;" th:href="@{/login}" >Đăng nhập</a></li>
                         </div>
 
-                        <form sec:authorize="hasRole('USER')" th:if="${username}" th:action="@{/logout}" method="post">
-                          <li><a class="dropdown-item " th:href="@{/profile}" >Thông tin cá nhân</a></li>
+                        <form class="" sec:authorize="hasRole('USER')" th:if="${username}" th:action="@{/logout}" method="post" style="z-index: 999;">
+                          <li><a class="dropdown-item " th:href="@{/profile}" style="font-size: smaller;" >Thông tin cá nhân</a></li>
                
-                          <li class="dropdown-item"><button class="border-0 bg-white" type="submit">Đăng xuất</button></li>
+                          <li class="dropdown-item"><button class="border-0 bg-white" type="submit" style="font-size: smaller;">Đăng xuất</button></li>
                         </form> 
                         
-                        <form sec:authorize="hasRole('ADMIN') or hasRole('STAFF')" th:if="${username}" th:action="@{/logout}" method="post">
-                          <li><a class="dropdown-item " th:href="@{/profile}" >Thông tin cá nhân</a></li>
-                          <li><a class="dropdown-item " th:href="@{/admin/products}" >Quản Lý</a></li>
-                          <li class="dropdown-item"><button class="border-0 bg-white" type="submit">Đăng xuất</button></li>
+                        <form sec:authorize="hasRole('ADMIN') or hasRole('STAFF')" th:if="${username}" th:action="@{/logout}" method="post" style="z-index: 999;">
+                          <li><a class="dropdown-item " th:href="@{/profile}" style="font-size: smaller;">Thông tin cá nhân</a></li>
+                          <li><a class="dropdown-item " th:href="@{/admin/products}" style="font-size: smaller;" >Quản Lý</a></li>
+                          <li class="dropdown-item"><button class="border-0 bg-white" type="submit" style="font-size: smaller;">Đăng xuất</button></li>
                         </form> 
                         
                       </ul>
@@ -55,8 +58,8 @@
 
                     <!-- Cart -->
                       <a href="/cart" class="mt-2 d-flex align-items-center text-black link-offset-3-hover text-decoration-none">
-                          <ion-icon class="fs-3" name="cart-outline"></ion-icon>
-                          <p class="pt-3 mx-2">Giỏ hàng (<span th:text="${cartItemCount}">0</span>)</p>
+                          <ion-icon class="fs-5" name="cart-outline"></ion-icon>
+                          <p class="pt-3  " style="font-size: smaller;">Giỏ hàng (<span th:text="${cartItemCount}">0</span>)</p>
                       </a>
                       
                     <!-- Cart -->
