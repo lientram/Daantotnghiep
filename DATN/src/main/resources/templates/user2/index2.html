@@ -54,17 +54,17 @@
 	<!-- Banner -->
 
 	<!-- Support -->
-	<article class="border border-info rounded mt-3 px-5  d-flex flex-column flex-md-row  justify-content-between"
-		style="width: 90%; margin: auto;">
-		<div class="d-flex align-items-center gap-2 my-3">
+	<article class="border border-info rounded mt-3  col-10  d-flex flex-column flex-md-row  justify-content-between"
+		style=" margin: auto;">
+		<div class="d-flex col-12 col-md-4  flex-column  align-items-center gap-2 my-3">
 			<img src="https://noithatkdt.vn/wp-content/uploads/2022/12/Group-1969.png" alt="">
 			<p class="text-secondary  mt-4 text-uppercase" style="font-size: smaller;">Sản Xuất Theo Yêu Cầu</p>
 		</div>
-		<div class="d-flex align-items-center gap-2 my-3">
+		<div class="d-flex col-12 col-md-4 flex-column align-items-center gap-2 my-3">
 			<img src="https://noithatkdt.vn/wp-content/uploads/2022/12/Group-1969.png" alt="">
 			<p class="text-secondary  mt-4 text-uppercase" style="font-size: smaller;">HỖ TRỢ ĐO KÍCH THƯỚC TẠI NHÀ</p>
 		</div>
-		<div class="d-flex align-items-center gap-2 my-3">
+		<div class="d-flex col-12 col-md-4 flex-column  align-items-center gap-2 my-3">
 			<img src="https://noithatkdt.vn/wp-content/uploads/2022/12/Group-1969.png" alt="">
 			<p class="text-secondary  mt-4 text-uppercase " style="font-size: smaller;">Sản Xuất Theo Yêu Cầu</p>
 		</div>
@@ -79,12 +79,13 @@
 	<!-- list product -->
 	<article th:each="category : ${categories}" class="mt-5" style="width: 100%; margin: auto;">
 		<div class="border-bottom ">
-			<div class="d-flex flex-column flex-md-row  justify-content-between" style="width: 90%; margin: auto;">
-				<div class="border rounded bg-info  w-50  align-items-center  ">
-					<p class="fs-5 text-white px-3 pt-3 text-uppercase" th:text="${category.name}"></p>
+			<div class="d-flex flex-column flex-lg-row  justify-content-between col-10" style=" margin: auto;">
+				<div class=" rounded d-flex col-12 col-lg-10  align-items-center  ">
+					<p class="fs-5 px-3 pt-3 text-uppercase text-black" th:text="${category.name}"></p>
+					<div class=" bg-black " style="width: 70%; height: 3px;"></div>
 				</div>
-				<div class="d-flex align-items-center gap-3 justify-content-end">
-					<p class="fs-5 fw-bold text-info pt-3">Xem tất cả</p>
+				<div class="d-flex align-items-center col-12 col-lg-2 gap-3 justify-content-end  " style="cursor: pointer;" >
+					<p class="fs-6 fw-bold text-info pt-3">Xem tất cả</p>
 					<ion-icon class="text-info fs-4" name="arrow-forward-outline"></ion-icon>
 				</div>
 			</div>
@@ -92,9 +93,9 @@
 
 
 
-		<div class="row mt-5  " style="width: 90%; margin: auto;">
+		<div class="row mt-5 col-10 " style=" margin: auto;">
 			<div th:each="product : ${topProductsPerCategory[__${category.categoryId}__]}"
-				class="col-6 col-lg-3  py-3 rounded">
+				class="col-12 col-sm-6  col-lg-4 col-xl-3  py-3 rounded">
 				<a th:href="@{'/ProductDetails/' + ${product.productId}}"
 					class=" rounded text-decoration-none text-black">
 
