@@ -197,8 +197,8 @@ data-sidebar-position="fixed" data-header-position="fixed">
             <input type="text" name="voucherCode" id="voucherCode" class="form-control">
         </div>
         <div class="form-group">
-            <label for="discountAmount">Giảm tiền (đơn vị K):</label>
-            <input type="number" name="discountAmount" id="discountAmount" class="form-control" placeholder="Ví dụ: 99">
+            <label for="discountAmount">Giảm tiền (đơn vị VND):</label>
+            <input type="number" name="discountAmount" id="discountAmount" class="form-control" placeholder="Ví dụ: 50000">
         </div>
         <div class="form-group">
             <label for="startDate">Ngày bắt đầu:</label>
@@ -224,6 +224,7 @@ data-sidebar-position="fixed" data-header-position="fixed">
                 <th>Ngày bắt đầu</th>
                 <th>Ngày kết thúc</th>
                 <th>Số lượng</th>
+                <th>Thao tác</th>
             </tr>
         </thead>
         <tbody>
@@ -234,6 +235,13 @@ data-sidebar-position="fixed" data-header-position="fixed">
                 <td th:text="${voucher.startDate}"></td>
                 <td th:text="${voucher.endDate}"></td>
                 <td th:text="${voucher.quantity}"></td>
+
+              <td>
+                <form th:action="@{/admin/vouchers/delete}" method="post">
+                  <input type="hidden" th:name="voucherId" th:value="${voucher.voucherId}">
+                  <button type="submit" class="btn btn-danger">Xóa mã</button>
+                </form>
+              </td>
             </tr>
             <!-- End of Loop -->
         </tbody>

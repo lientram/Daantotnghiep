@@ -241,6 +241,7 @@ public class IndexController {
         model.addAttribute("categories", cat);
         model.addAttribute("products", products);
         model.addAttribute("allcategory", allcat);
+        model.addAttribute("categoryID", categoryId);
         return "user2/listProduct";
     }
 

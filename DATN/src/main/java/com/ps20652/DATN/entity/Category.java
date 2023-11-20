@@ -6,6 +6,8 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "Categories")
@@ -19,6 +21,7 @@ public class Category implements Serializable {
     @Column(name = "name", length = 100)
     private String name;
     
+    @JsonIgnore
     @OneToMany(mappedBy = "category") // A category can have multiple products
     private List<Product> products;
     

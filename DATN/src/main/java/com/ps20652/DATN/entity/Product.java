@@ -6,6 +6,8 @@ import javax.persistence.*;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 @SuppressWarnings("serial")
@@ -33,6 +35,7 @@ public class Product implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "category_id")
+    
     private Category category;
 
    
@@ -45,6 +48,19 @@ public class Product implements Serializable {
     @Column(name = "purchase_price")
     private Integer purchasePrice;
     
+
+//     @Override
+// public String toString() {
+//     return "Product{" +
+//             "productId=" + productId +
+//             ", name='" + name + '\'' +
+//             ", image='" + image + '\'' +
+//             ", price=" + price +
+//             ", quantityInStock=" + quantityInStock +
+//             ", category=" + category +
+//             '}';
+// }
+
 
 }
 

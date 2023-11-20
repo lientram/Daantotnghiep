@@ -9,6 +9,8 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 
 @SuppressWarnings("serial")
@@ -57,6 +59,8 @@ public class Account implements Serializable {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "voucher_id")
     )
+
+      @JsonIgnore
     private Set<Voucher> vouchers = new HashSet<>();
     
     public boolean hasVoucher(Voucher voucher) {
